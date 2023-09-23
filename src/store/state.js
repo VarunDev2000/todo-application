@@ -1,4 +1,11 @@
+import { MENU_TASKS } from '@/helpers/constants'
+
 export const state = {
+  appMenu: {
+    selectedTask: MENU_TASKS[0].id,
+    selectedList: ''
+  },
+  selectedToDoTask: 123,
   todo: [
     {
       id: 123,

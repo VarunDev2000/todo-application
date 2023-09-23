@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="flex flex-row justify-between items-center cursor-pointer py-3"
+      class="flex flex-row justify-between items-center cursor-pointer px-3 py-3"
       @click="toggleMoreDetails()"
     >
       <div class="flex flex-row justify-center items-center">

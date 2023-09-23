@@ -8,14 +8,12 @@
       <div>
         <p class="subtitle">Tasks</p>
         <div>
-          <app-menu-task-item name="All" icon="fa-list" count="14" />
-          <app-menu-task-item name="Today" icon="fa-calendar-day" count="2" />
           <app-menu-task-item
-            name="Upcoming"
-            icon="fa-calendar-week"
-            count="10"
+            v-for="menuTask in MENU_TASKS"
+            :key="menuTask.id"
+            :task="menuTask"
+            :selected="menuTask.id === appMenu.selectedTask"
           />
-          <app-menu-task-item name="Completed" icon="fa-check" count="2" />
         </div>
       </div>
 
@@ -24,9 +22,12 @@
       <div>
         <p class="subtitle">Lists</p>
         <div>
-          <app-menu-list-item name="Personal" color="#f05959" count="10" />
-          <app-menu-list-item name="Work" color="#8400ff" count="3" />
-          <app-menu-list-item name="Other" color="#3a55c9" count="1" />
+          <app-menu-list-item
+            v-for="menuList in MENU_LISTS"
+            :key="menuList.id"
+            :list="menuList"
+            :selected="menuList.id === appMenu.selectedList"
+          />
         </div>
       </div>
     </div>
@@ -41,14 +42,25 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppMenuTaskItem from './AppMenuTaskItem.vue'
 import AppMenuListItem from './AppMenuListItem.vue'
+import { MENU_TASKS, MENU_LISTS } from '../../helpers/constants'
 
 export default {
   name: 'AppMenu',
   components: {
     'app-menu-task-item': AppMenuTaskItem,
     'app-menu-list-item': AppMenuListItem
+  },
+  data() {
+    return {
+      MENU_TASKS,
+      MENU_LISTS
+    }
+  },
+  computed: {
+    ...mapState(['appMenu'])
   }
 }
 </script>
