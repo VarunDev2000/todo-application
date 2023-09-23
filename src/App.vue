@@ -6,8 +6,12 @@
 </template>
 
 <script>
+import AppMenu from './components/AppMenu/AppMenu'
+
 export default {
-  components: {}
+  components: {
+    'app-menu': AppMenu
+  }
 }
 </script>
 
