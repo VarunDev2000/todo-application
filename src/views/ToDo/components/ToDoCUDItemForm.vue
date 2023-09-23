@@ -6,15 +6,24 @@
       @submit.prevent="addToDoItem"
     >
       <div class="flex flex-col">
-        <input type="text" placeholder="Task" v-model="newToDoItem" />
-        <textarea placeholder="Task description" />
-        <div class="flex flex-row items-center">
+        <input type="text" placeholder="Task" v-model="newToDoItem.task" />
+        <textarea placeholder="Description" v-model="newToDoItem.description" />
+        <div class="flex flex-row items-center mb-5">
           <p class="mr-6">List</p>
-          <select name="list">
-            <option value="volvo">Personal</option>
-            <option value="saab">Work</option>
-            <option value="mercedes">Other</option>
+          <select name="list" v-model="newToDoItem.list">
+            <option value="Personal">Personal</option>
+            <option value="Work">Work</option>
+            <option value="Other">Other</option>
           </select>
+        </div>
+
+        <div class="flex flex-row items-center">
+          <p class="mr-6">Due date</p>
+          <date-picker
+            v-model="newToDoItem.date"
+            valueType="format"
+            :clearable="false"
+          />
         </div>
       </div>
       <div>
@@ -26,21 +35,37 @@
 </template>
 
 <script>
+import DatePicker from 'vue2-datepicker'
 import AppPrimaryButton from '../../../components/AppPrimaryButton'
 import AppSecondaryButton from '../../../components/AppSecondaryButton'
+import { formatDate } from '../../../helpers/date'
 
 export default {
-  name: 'ToDoAddItemForm',
+  name: 'ToDoCUDItemForm',
   components: {
+    'date-picker': DatePicker,
     'app-primary-button': AppPrimaryButton,
     'app-secondary-button': AppSecondaryButton
   },
   data() {
-    return { newToDoItem: '' }
+    return {
+      newToDoItem: {
+        task: '',
+        description: '',
+        list: 'Personal',
+        date: formatDate(new Date())
+      }
+    }
   },
   methods: {
     addToDoItem() {
       this.$store.dispatch('addToDoItem', this.newToDoItem)
+      this.newToDoItem = {
+        task: '',
+        description: '',
+        list: 'Personal',
+        date: formatDate(new Date())
+      }
       this.$refs.addToDoItemForm.reset()
     }
   }
@@ -76,4 +101,6 @@ select {
   background-repeat: no-repeat;
   border: 1px solid #ccc;
 }
+
+@import 'vue2-datepicker/index.css';
 </style>

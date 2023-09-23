@@ -7,6 +7,7 @@ import {
   faCalendarDay,
   faCheck,
   faGear,
+  faChevronUp,
   faChevronDown
 } from '@fortawesome/free-solid-svg-icons'
 import App from './App.vue'
@@ -20,6 +21,7 @@ library.add(
   faCalendarDay,
   faCheck,
   faGear,
+  faChevronUp,
   faChevronDown
 )
 Vue.component('font-awesome-icon', FontAwesomeIcon)

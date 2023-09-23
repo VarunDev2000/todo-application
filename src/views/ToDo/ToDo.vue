@@ -7,20 +7,20 @@
       </div>
       <todo-list />
     </div>
-    <todo-add-item-form />
+    <todo-cud-item-form />
   </div>
 </template>
 
 <script>
 import ToDoList from './components/ToDoList'
-import ToDoAddItemForm from './components/ToDoAddItemForm'
+import ToDoCUDItemForm from './components/ToDoCUDItemForm'
 import AppSecondaryButton from '../../components/AppSecondaryButton'
 
 export default {
   name: 'ToDo',
   components: {
     'todo-list': ToDoList,
-    'todo-add-item-form': ToDoAddItemForm,
+    'todo-cud-item-form': ToDoCUDItemForm,
     'app-secondary-button': AppSecondaryButton
   }
 }
