@@ -39,4 +39,11 @@ const MENU_LISTS = [
   }
 ]
 
-export { MENU_TASKS, MENU_LISTS }
+const TITLE = {
+  'menu-task1': 'All Tasks',
+  'menu-task2': 'Today',
+  'menu-task3': 'Upcoming',
+  'menu-task4': 'Completed'
+}
+
+export { MENU_TASKS, MENU_LISTS, TITLE }

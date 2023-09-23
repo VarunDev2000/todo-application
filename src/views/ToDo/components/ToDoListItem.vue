@@ -2,7 +2,7 @@
   <div>
     <div
       class="flex flex-row justify-between items-center cursor-pointer px-3 py-3"
-      @click="toggleMoreDetails()"
+      @click="toggleMoreDetails"
     >
       <div class="flex flex-row justify-center items-center">
         <input type="checkbox" />
@@ -14,12 +14,15 @@
     <div v-if="showMoreDetails" class="pl-8 pb-3">
       <p>{{ todo?.description }}</p>
       <p>{{ todo?.list }}</p>
+      <button @click="setSelectedToDoTask(todo)">Edit</button>
     </div>
     <hr />
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'ToDoListItem',
   data() {
@@ -29,6 +32,7 @@ export default {
     todo: Object
   },
   methods: {
+    ...mapActions(['setSelectedToDoTask']),
     toggleMoreDetails() {
       this.showMoreDetails = !this.showMoreDetails
     }

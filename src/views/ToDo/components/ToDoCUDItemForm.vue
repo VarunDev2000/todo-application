@@ -26,15 +26,21 @@
           />
         </div>
       </div>
-      <div>
-        <app-primary-button>Save changes</app-primary-button>
+      <div v-if="selectedToDoTask === null">
+        <app-primary-button>Create task</app-primary-button>
+        <app-secondary-button>Clear</app-secondary-button>
+      </div>
+      <div v-else>
+        <button @click="updateToDoTask(newToDoItem)">Save changes</button>
         <app-secondary-button>Delete task</app-secondary-button>
+        <button type="button" @click="setSelectedToDoTask(null)">Cancel</button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import DatePicker from 'vue2-datepicker'
 import AppPrimaryButton from '../../../components/AppPrimaryButton'
 import AppSecondaryButton from '../../../components/AppSecondaryButton'
@@ -57,7 +63,25 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapState(['selectedToDoTask'])
+  },
+  watch: {
+    selectedToDoTask(newValue) {
+      if (newValue !== null) {
+        this.newToDoItem = Object.assign({}, newValue)
+      } else {
+        this.newToDoItem = {
+          task: '',
+          description: '',
+          list: 'Personal',
+          date: formatDate(new Date())
+        }
+      }
+    }
+  },
   methods: {
+    ...mapActions(['setSelectedToDoTask', 'updateToDoTask']),
     addToDoItem() {
       this.$store.dispatch('addToDoItem', this.newToDoItem)
       this.newToDoItem = {

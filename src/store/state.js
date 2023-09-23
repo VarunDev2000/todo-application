@@ -5,7 +5,7 @@ export const state = {
     selectedTask: MENU_TASKS[0].id,
     selectedList: ''
   },
-  selectedToDoTask: 123,
+  selectedToDoTask: null,
   todo: [
     {
       id: 123,

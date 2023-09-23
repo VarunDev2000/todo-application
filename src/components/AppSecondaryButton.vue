@@ -1,6 +1,7 @@
 <template>
   <button
     class="w-40 border border-gray-200 text-gray-600 py-2 rounded-lg font-semibold text-sm hover:bg-gray-100;"
+    @click="onclick"
   >
     <slot />
   </button>
@@ -8,7 +9,13 @@
 
 <script>
 export default {
-  name: 'AppSecondaryButton'
+  name: 'AppSecondaryButton',
+  props: {
+    onclick: {
+      type: Function,
+      default: () => {}
+    }
+  }
 }
 </script>
 

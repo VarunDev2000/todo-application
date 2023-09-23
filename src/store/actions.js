@@ -9,3 +9,11 @@ export const setSelectedMenuList = (context, list) => {
 export const addToDoItem = (context, item) => {
   context.commit('ADD_TODO_ITEM', item)
 }
+
+export const setSelectedToDoTask = (context, todo) => {
+  context.commit('SET_SELECTED_TODO_TASK', todo)
+}
+
+export const updateToDoTask = (context, task) => {
+  context.commit('UPDATE_TODO_TASK', task)
+}
