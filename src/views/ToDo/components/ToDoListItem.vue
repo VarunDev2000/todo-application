@@ -55,12 +55,21 @@
             <p class="ml-2">{{ list?.name }}</p>
           </div>
         </div>
-        <button
-          class="underline hover:text-black"
-          @click="setSelectedToDoTask(todo)"
-        >
-          Edit
-        </button>
+
+        <div class="flex flex-row justify-center items-center ml-5">
+          <font-awesome-icon
+            class="mx-5 cursor-pointer"
+            icon="fa-solid fa-clone"
+            title="Duplicate"
+            @click="duplicate()"
+          />
+          <button
+            class="underline hover:text-black"
+            @click="setSelectedToDoTask(todo)"
+          >
+            Edit
+          </button>
+        </div>
       </div>
     </div>
     <hr />
@@ -106,6 +115,7 @@ export default {
   },
   methods: {
     ...mapActions([
+      'addToDoItem',
       'setSelectedToDoTask',
       'setSelectedToDoTaskList',
       'setTaskCompleted'
@@ -125,6 +135,11 @@ export default {
     },
     isPastDue() {
       return new Date() > new Date(this.todo?.date) && !this.todo?.completed
+    },
+    duplicate() {
+      var duplicateToDo = Object.assign({}, this.todo)
+      duplicateToDo.completed = false
+      this.addToDoItem(duplicateToDo)
     },
     setSelectedToDoList() {
       const filteredList = this.selectedToDoTaskList.filter(

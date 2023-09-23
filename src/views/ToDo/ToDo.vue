@@ -2,7 +2,9 @@
   <div id="todo">
     <div class="px-6">
       <div class="flex flex-row justify-between items-center pb-7">
-        <p class="font-extrabold text-4xl">{{ TITLE[appMenu.selectedTask] }}</p>
+        <p class="font-extrabold text-4xl">
+          {{ getTitle(appMenu.selectedTask) }}
+        </p>
         <app-secondary-button
           v-if="selectedToDoTask !== null"
           :onclick="() => setSelectedToDoTask(null)"
@@ -48,6 +50,7 @@ import ToDoList from './components/ToDoList'
 import ToDoCUDItemForm from './components/ToDoCUDItemForm'
 import AppSecondaryButton from '../../components/AppSecondaryButton'
 import { TITLE } from '../../helpers/constants'
+import { getTitle } from '../../helpers/helpers'
 
 export default {
   name: 'ToDo',
@@ -65,6 +68,7 @@ export default {
     ...mapState(['appMenu', 'selectedToDoTask', 'selectedToDoTaskList'])
   },
   methods: {
+    getTitle,
     ...mapActions([
       'setSelectedToDoTask',
       'deleteMultipleToDoTask',

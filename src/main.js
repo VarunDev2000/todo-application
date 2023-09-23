@@ -7,9 +7,11 @@ import {
   faCalendarDay,
   faGear,
   faCheck,
+  faClock,
   faXmark,
   faTrash,
-  faCalendarXmark
+  faCalendarXmark,
+  faClone
 } from '@fortawesome/free-solid-svg-icons'
 import App from './App.vue'
 import router from './router'
@@ -22,9 +24,11 @@ library.add(
   faCalendarDay,
   faGear,
   faCheck,
+  faClock,
   faXmark,
   faTrash,
-  faCalendarXmark
+  faCalendarXmark,
+  faClone
 )
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

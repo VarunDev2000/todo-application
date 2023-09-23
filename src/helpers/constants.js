@@ -6,18 +6,23 @@ const MENU_TASKS = [
   },
   {
     id: 'menu-task2',
+    menuTask: 'Pending',
+    icon: 'fa-clock'
+  },
+  {
+    id: 'menu-task3',
+    menuTask: 'Completed',
+    icon: 'fa-check'
+  },
+  {
+    id: 'menu-task4',
     menuTask: 'Today',
     icon: 'fa-calendar-day'
   },
   {
-    id: 'menu-task3',
+    id: 'menu-task5',
     menuTask: 'Upcoming',
     icon: 'fa-calendar-week'
-  },
-  {
-    id: 'menu-task4',
-    menuTask: 'Completed',
-    icon: 'fa-check'
   }
 ]
 
@@ -39,11 +44,4 @@ const MENU_LISTS = [
   }
 ]
 
-const TITLE = {
-  'menu-task1': 'All Tasks',
-  'menu-task2': 'Today',
-  'menu-task3': 'Upcoming',
-  'menu-task4': 'Completed'
-}
-
-export { MENU_TASKS, MENU_LISTS, TITLE }
+export { MENU_TASKS, MENU_LISTS }
