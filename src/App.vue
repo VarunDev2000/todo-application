@@ -1,32 +1,34 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <app-menu />
+    <router-view />
   </div>
 </template>
 
-<style>
+<script>
+export default {
+  components: {}
+}
+</script>
+
+<style lang="postcss">
+body {
+  font-family: 'Poppins', sans-serif;
+  @apply flex justify-center items-center;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  @apply flex flex-row h-screen p-4 text-gray-700 text-sm;
+  width: 1500px;
+  overflow: hidden;
 }
 
-nav {
-  padding: 30px;
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+::-webkit-scrollbar-thumb {
+  background: #ff0000;
 }
 </style>
