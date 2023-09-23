@@ -34,9 +34,10 @@ export const UPDATE_TODO_TASK = (state, task) => {
   state.selectedToDoTask = null
 }
 
-// export const DELETE_TODO_TASK = (state, taskId) => {
-//   state.selectedToDoTask = todo
-// }
+export const DELETE_TODO_TASK = (state, taskId) => {
+  state.todo = state.todo.filter((todo) => todo.id !== taskId)
+  state.selectedToDoTask = null
+}
 
 // export const DELETE_MULTIPLE_TODO_TASKS = (state, taskIds) => {
 //   state.selectedToDoTask = todo

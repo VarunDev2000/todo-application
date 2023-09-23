@@ -1,6 +1,7 @@
 <template>
   <button
     class="w-40 border border-gray-200 text-gray-600 py-2 rounded-lg font-semibold text-sm hover:bg-gray-100;"
+    :type="type"
     @click="onclick"
   >
     <slot />
@@ -11,6 +12,10 @@
 export default {
   name: 'AppSecondaryButton',
   props: {
+    type: {
+      type: String,
+      default: 'button'
+    },
     onclick: {
       type: Function,
       default: () => {}

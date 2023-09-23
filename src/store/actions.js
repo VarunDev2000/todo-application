@@ -17,3 +17,7 @@ export const setSelectedToDoTask = (context, todo) => {
 export const updateToDoTask = (context, task) => {
   context.commit('UPDATE_TODO_TASK', task)
 }
+
+export const deleteToDoTask = (context, taskId) => {
+  context.commit('DELETE_TODO_TASK', taskId)
+}

@@ -3,7 +3,9 @@
     <form
       class="h-full flex flex-col justify-between"
       ref="addToDoItemForm"
-      @submit.prevent="addToDoItem"
+      @submit.prevent="
+        selectedToDoTask === null ? addToDoItem() : updateToDoTask(newToDoItem)
+      "
     >
       <div class="flex flex-col">
         <input type="text" placeholder="Task" v-model="newToDoItem.task" />
@@ -26,14 +28,19 @@
           />
         </div>
       </div>
+
       <div v-if="selectedToDoTask === null">
-        <app-primary-button>Create task</app-primary-button>
+        <app-primary-button type="submit">Create task</app-primary-button>
         <app-secondary-button>Clear</app-secondary-button>
       </div>
       <div v-else>
-        <button @click="updateToDoTask(newToDoItem)">Save changes</button>
-        <app-secondary-button>Delete task</app-secondary-button>
-        <button type="button" @click="setSelectedToDoTask(null)">Cancel</button>
+        <app-primary-button type="submit"> Save changes </app-primary-button>
+        <app-secondary-button :onclick="() => deleteToDoTask(newToDoItem.id)"
+          >Delete task</app-secondary-button
+        >
+        <app-secondary-button :onclick="() => setSelectedToDoTask(null)"
+          >Cancel</app-secondary-button
+        >
       </div>
     </form>
   </div>
@@ -56,6 +63,7 @@ export default {
   data() {
     return {
       newToDoItem: {
+        id: null,
         task: '',
         description: '',
         list: 'Personal',
@@ -72,6 +80,7 @@ export default {
         this.newToDoItem = Object.assign({}, newValue)
       } else {
         this.newToDoItem = {
+          id: null,
           task: '',
           description: '',
           list: 'Personal',
@@ -81,10 +90,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setSelectedToDoTask', 'updateToDoTask']),
+    ...mapActions(['setSelectedToDoTask', 'updateToDoTask', 'deleteToDoTask']),
     addToDoItem() {
       this.$store.dispatch('addToDoItem', this.newToDoItem)
       this.newToDoItem = {
+        id: null,
         task: '',
         description: '',
         list: 'Personal',
