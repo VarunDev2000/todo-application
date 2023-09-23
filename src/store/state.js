@@ -12,7 +12,7 @@ export const state = {
       id: 123,
       task: 'Drink Water',
       description: 'Reminder to drink water',
-      list: 'Personal',
+      list: 'menu-list1',
       date: '2023-09-29',
       completed: false
     },
@@ -20,7 +20,7 @@ export const state = {
       id: 234,
       task: 'Check email',
       description: 'Check email regularly',
-      list: 'Work',
+      list: 'menu-list2',
       date: '2023-09-08',
       completed: false
     },
@@ -28,7 +28,7 @@ export const state = {
       id: 456,
       task: 'Vehicle service',
       description: 'Service for vehicle',
-      list: 'Personal',
+      list: 'menu-list3',
       date: '2023-07-02',
       completed: true
     }

@@ -33,7 +33,7 @@
     </div>
 
     <div
-      class="flex flex-row items-center px-3 py-2 rounded-md cursor-pointer hover:bg-gray-200"
+      class="flex flex-row items-center px-3 py-2 mt-7 rounded-md cursor-pointer hover:bg-gray-200"
     >
       <font-awesome-icon icon="fa-solid fa-gear" />
       <p class="pl-3">Settings</p>

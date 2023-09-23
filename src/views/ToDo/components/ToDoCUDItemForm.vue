@@ -1,44 +1,74 @@
 <template>
   <div id="todo-add-item-form">
     <form
-      class="h-full flex flex-col justify-between"
+      class="h-full flex flex-col justify-between px-5 py-4"
       ref="addToDoItemForm"
       @submit.prevent="
-        selectedToDoTask === null ? addToDoItem() : updateToDoTask(newToDoItem)
+        selectedToDoTask === null ? addToDoItem() : updateToDoTask(toDoItem)
       "
     >
       <div class="flex flex-col">
-        <input type="text" placeholder="Task" v-model="newToDoItem.task" />
-        <textarea placeholder="Description" v-model="newToDoItem.description" />
+        <input
+          type="text"
+          placeholder="Task"
+          v-model="toDoItem.task"
+          maxlength="100"
+          required
+        />
+        <textarea
+          placeholder="Description"
+          v-model="toDoItem.description"
+          maxlength="500"
+        />
         <div class="flex flex-row items-center mb-5">
           <p class="mr-6">List</p>
-          <select name="list" v-model="newToDoItem.list">
-            <option value="Personal">Personal</option>
-            <option value="Work">Work</option>
-            <option value="Other">Other</option>
+          <select name="list" v-model="toDoItem.list">
+            <option
+              v-for="menuList in MENU_LISTS"
+              :key="menuList?.id"
+              :value="menuList?.id"
+            >
+              {{ menuList?.menuList }}
+            </option>
           </select>
         </div>
 
         <div class="flex flex-row items-center">
           <p class="mr-6">Due date</p>
           <date-picker
-            v-model="newToDoItem.date"
+            v-model="toDoItem.date"
             valueType="format"
             :clearable="false"
           />
         </div>
       </div>
 
-      <div v-if="selectedToDoTask === null">
-        <app-primary-button type="submit">Create task</app-primary-button>
-        <app-secondary-button>Clear</app-secondary-button>
-      </div>
-      <div v-else>
-        <app-primary-button type="submit"> Save changes </app-primary-button>
-        <app-secondary-button :onclick="() => deleteToDoTask(newToDoItem.id)"
-          >Delete task</app-secondary-button
+      <div
+        v-if="selectedToDoTask === null"
+        class="flex flex-row justify-between items-center mt-10"
+      >
+        <app-primary-button type="submit" class="w-1/2 mr-2"
+          >Create task</app-primary-button
         >
-        <app-secondary-button :onclick="() => setSelectedToDoTask(null)"
+        <app-secondary-button class="w-1/2" :onclick="() => clearForm()"
+          >Clear</app-secondary-button
+        >
+      </div>
+      <div v-else class="mt-10">
+        <div class="flex flex-row justify-between items-center">
+          <app-primary-button class="w-1/2 mr-2" type="submit">
+            Save changes
+          </app-primary-button>
+          <app-secondary-button
+            class="w-1/2"
+            :onclick="() => deleteToDoTask(toDoItem.id)"
+            >Delete task</app-secondary-button
+          >
+        </div>
+
+        <app-secondary-button
+          class="w-full mt-3"
+          :onclick="() => setSelectedToDoTask(null)"
           >Cancel</app-secondary-button
         >
       </div>
@@ -52,6 +82,7 @@ import DatePicker from 'vue2-datepicker'
 import AppPrimaryButton from '../../../components/AppPrimaryButton'
 import AppSecondaryButton from '../../../components/AppSecondaryButton'
 import { formatDate } from '../../../helpers/date'
+import { MENU_LISTS } from '@/helpers/constants'
 
 export default {
   name: 'ToDoCUDItemForm',
@@ -62,14 +93,15 @@ export default {
   },
   data() {
     return {
-      newToDoItem: {
+      toDoItem: {
         id: null,
         task: '',
         description: '',
-        list: 'Personal',
+        list: MENU_LISTS[0].id,
         date: formatDate(new Date()),
         completed: false
-      }
+      },
+      MENU_LISTS
     }
   },
   computed: {
@@ -78,24 +110,16 @@ export default {
   watch: {
     selectedToDoTask(newValue) {
       if (newValue !== null) {
-        this.newToDoItem = Object.assign({}, newValue)
+        this.toDoItem = Object.assign({}, newValue)
       } else {
-        this.newToDoItem = {
-          id: null,
-          task: '',
-          description: '',
-          list: 'Personal',
-          date: formatDate(new Date()),
-          completed: false
-        }
+        this.clearForm()
       }
     }
   },
   methods: {
     ...mapActions(['setSelectedToDoTask', 'updateToDoTask', 'deleteToDoTask']),
-    addToDoItem() {
-      this.$store.dispatch('addToDoItem', this.newToDoItem)
-      this.newToDoItem = {
+    clearForm() {
+      this.toDoItem = {
         id: null,
         task: '',
         description: '',
@@ -103,6 +127,10 @@ export default {
         date: formatDate(new Date()),
         completed: false
       }
+    },
+    addToDoItem() {
+      this.$store.dispatch('addToDoItem', this.toDoItem)
+      this.clearForm()
       this.$refs.addToDoItemForm.reset()
     }
   }
@@ -111,9 +139,12 @@ export default {
 
 <style lang="postcss" scoped>
 #todo-add-item-form {
-  @apply flex flex-col justify-between rounded-xl px-5 py-4 h-full;
+  @apply flex flex-col justify-between rounded-xl h-full;
   background-color: #f4f4f4;
   width: 460px;
+}
+
+form {
   overflow-x: hidden;
   overflow-y: auto;
 }

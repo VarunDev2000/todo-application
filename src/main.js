@@ -8,7 +8,8 @@ import {
   faGear,
   faCheck,
   faXmark,
-  faTrash
+  faTrash,
+  faCalendarXmark
 } from '@fortawesome/free-solid-svg-icons'
 import App from './App.vue'
 import router from './router'
@@ -22,7 +23,8 @@ library.add(
   faGear,
   faCheck,
   faXmark,
-  faTrash
+  faTrash,
+  faCalendarXmark
 )
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
