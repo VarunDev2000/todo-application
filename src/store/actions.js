@@ -14,8 +14,8 @@ export const setSelectedToDoTask = (context, todo) => {
   context.commit('SET_SELECTED_TODO_TASK', todo)
 }
 
-export const setSelectedToDoTaskListForDelete = (context, taskIdList) => {
-  context.commit('SET_SELECTED_TODO_TASK_LIST_FOR_DELETE', taskIdList)
+export const setSelectedToDoTaskList = (context, taskIdList) => {
+  context.commit('SET_SELECTED_TODO_TASK_LIST', taskIdList)
 }
 
 export const updateToDoTask = (context, task) => {
@@ -28,4 +28,12 @@ export const deleteToDoTask = (context, taskId) => {
 
 export const deleteMultipleToDoTask = (context) => {
   context.commit('DELETE_MULTIPLE_TODO_TASKS')
+}
+
+export const setTaskCompleted = (context, payload) => {
+  context.commit('SET_TASK_COMPLETED', payload)
+}
+
+export const setMultipleTaskCompleted = (context, completed) => {
+  context.commit('SET_MULTIPLE_TASK_COMPLETED', completed)
 }

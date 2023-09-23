@@ -67,7 +67,8 @@ export default {
         task: '',
         description: '',
         list: 'Personal',
-        date: formatDate(new Date())
+        date: formatDate(new Date()),
+        completed: false
       }
     }
   },
@@ -84,7 +85,8 @@ export default {
           task: '',
           description: '',
           list: 'Personal',
-          date: formatDate(new Date())
+          date: formatDate(new Date()),
+          completed: false
         }
       }
     }
@@ -98,7 +100,8 @@ export default {
         task: '',
         description: '',
         list: 'Personal',
-        date: formatDate(new Date())
+        date: formatDate(new Date()),
+        completed: false
       }
       this.$refs.addToDoItemForm.reset()
     }

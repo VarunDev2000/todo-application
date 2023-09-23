@@ -9,11 +9,29 @@
         >
           + Add task</app-secondary-button
         >
-        <div v-if="selectedToDoList.length > 0">
-          <todo-delete-button :onclick="() => deleteMultipleToDoTask()"
-            >Delete</todo-delete-button
-          >
-          <app-secondary-button :onclick="() => setSelectedToDoList([])"
+        <div
+          class="flex flex-row justify-between items-center"
+          v-if="selectedToDoTaskList.length > 0"
+        >
+          <font-awesome-icon
+            class="text-xl text-gray-700 hover:text-gray-900 cursor-pointer mx-3"
+            icon="fa-solid fa-check"
+            title="Mark as completed"
+            @click="setMultipleTaskCompleted(true)"
+          />
+          <font-awesome-icon
+            class="text-xl text-gray-700 hover:text-gray-900 cursor-pointer mx-3"
+            icon="fa-solid fa-xmark"
+            title="Mark as incomplete"
+            @click="setMultipleTaskCompleted(false)"
+          />
+          <font-awesome-icon
+            class="text-md text-gray-700 hover:text-gray-900 cursor-pointer ml-3 mr-5"
+            icon="fa-solid fa-trash"
+            title="Delete"
+            @click="deleteMultipleToDoTask()"
+          />
+          <app-secondary-button :onclick="() => setSelectedToDoTaskList([])"
             >Cancel</app-secondary-button
           >
         </div>
@@ -29,7 +47,6 @@ import { mapState, mapActions } from 'vuex'
 import ToDoList from './components/ToDoList'
 import ToDoCUDItemForm from './components/ToDoCUDItemForm'
 import AppSecondaryButton from '../../components/AppSecondaryButton'
-import ToDoDeleteButton from './components/ToDoDeleteButton'
 import { TITLE } from '../../helpers/constants'
 
 export default {
@@ -37,8 +54,7 @@ export default {
   components: {
     'todo-list': ToDoList,
     'todo-cud-item-form': ToDoCUDItemForm,
-    'app-secondary-button': AppSecondaryButton,
-    'todo-delete-button': ToDoDeleteButton
+    'app-secondary-button': AppSecondaryButton
   },
   data() {
     return {
@@ -46,12 +62,15 @@ export default {
     }
   },
   computed: {
-    ...mapState(['appMenu', 'selectedToDoTask']),
-    ...mapState({ selectedToDoList: 'selectedToDoTaskListForDelete' })
+    ...mapState(['appMenu', 'selectedToDoTask', 'selectedToDoTaskList'])
   },
   methods: {
-    ...mapActions(['setSelectedToDoTask', 'deleteMultipleToDoTask']),
-    ...mapActions({ setSelectedToDoList: 'setSelectedToDoTaskListForDelete' })
+    ...mapActions([
+      'setSelectedToDoTask',
+      'deleteMultipleToDoTask',
+      'setSelectedToDoTaskList',
+      'setMultipleTaskCompleted'
+    ])
   }
 }
 </script>

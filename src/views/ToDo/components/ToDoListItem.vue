@@ -1,28 +1,39 @@
 <template>
   <div>
-    <div
-      class="flex flex-row justify-between items-center cursor-pointer px-3 py-3"
-    >
+    <div class="flex flex-row justify-between items-center cursor-pointer px-3">
       <div class="w-full flex flex-row justify-center items-center">
         <input
           type="checkbox"
           v-model="selected"
           @change="setSelectedToDoList"
         />
-        <p class="w-full ml-3 pt-0.5" @click="toggleMoreDetails">
+        <p
+          class="w-full ml-3 py-3"
+          :class="{
+            'line-through': todo?.completed,
+            'text-red-500': isPastDue()
+          }"
+          @click="toggleMoreDetails"
+        >
           {{ todo?.task }}
         </p>
       </div>
-      <font-awesome-icon
-        v-if="showMoreDetails"
-        icon="fa-solid fa-chevron-up"
-        @click="toggleMoreDetails"
-      />
-      <font-awesome-icon
-        v-else
-        icon="fa-solid fa-chevron-down"
-        @click="toggleMoreDetails"
-      />
+      <div>
+        <font-awesome-icon
+          class="text-lg text-gray-700 hover:text-gray-900"
+          v-if="!todo?.completed"
+          icon="fa-solid fa-check"
+          title="Mark as completed"
+          @click="setTaskCompleted({ taskId: todo?.id, completed: true })"
+        />
+        <font-awesome-icon
+          class="text-xl text-gray-700 hover:text-gray-900"
+          v-else
+          icon="fa-solid fa-xmark"
+          title="Mark as incomplete"
+          @click="setTaskCompleted({ taskId: todo?.id, completed: false })"
+        />
+      </div>
     </div>
     <div v-if="showMoreDetails" class="pl-8 pb-3">
       <p>{{ todo?.description }}</p>
@@ -48,28 +59,35 @@ export default {
     todo: Object
   },
   computed: {
-    ...mapState({ selectedToDoList: 'selectedToDoTaskListForDelete' })
+    ...mapState(['selectedToDoTaskList'])
   },
   watch: {
-    selectedToDoList(newValue) {
+    selectedToDoTaskList(newValue) {
       if (!newValue.includes(this.todo?.id)) {
         this.selected = false
       }
     }
   },
   methods: {
-    ...mapActions(['setSelectedToDoTask', 'setSelectedToDoTaskListForDelete']),
+    ...mapActions([
+      'setSelectedToDoTask',
+      'setSelectedToDoTaskList',
+      'setTaskCompleted'
+    ]),
     toggleMoreDetails() {
       this.showMoreDetails = !this.showMoreDetails
     },
+    isPastDue() {
+      return new Date() > new Date(this.todo?.date) && !this.todo?.completed
+    },
     setSelectedToDoList() {
-      const filteredList = this.selectedToDoList.filter(
+      const filteredList = this.selectedToDoTaskList.filter(
         (todoId) => todoId !== this.todo?.id
       )
       if (this.selected) {
         filteredList.push(this.todo?.id)
       }
-      this.setSelectedToDoTaskListForDelete(filteredList)
+      this.setSelectedToDoTaskList(filteredList)
     }
   }
 }

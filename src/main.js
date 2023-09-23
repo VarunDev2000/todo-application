@@ -5,10 +5,10 @@ import {
   faList,
   faCalendarWeek,
   faCalendarDay,
-  faCheck,
   faGear,
-  faChevronUp,
-  faChevronDown
+  faCheck,
+  faXmark,
+  faTrash
 } from '@fortawesome/free-solid-svg-icons'
 import App from './App.vue'
 import router from './router'
@@ -19,10 +19,10 @@ library.add(
   faList,
   faCalendarWeek,
   faCalendarDay,
-  faCheck,
   faGear,
-  faChevronUp,
-  faChevronDown
+  faCheck,
+  faXmark,
+  faTrash
 )
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
