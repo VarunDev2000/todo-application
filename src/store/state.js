@@ -6,6 +6,7 @@ export const state = {
     selectedList: ''
   },
   selectedToDoTask: null,
+  selectedToDoTaskListForDelete: [],
   todo: [
     {
       id: 123,

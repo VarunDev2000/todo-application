@@ -43,8 +43,8 @@
 
 <script>
 import { mapState } from 'vuex'
-import AppMenuTaskItem from './AppMenuTaskItem.vue'
-import AppMenuListItem from './AppMenuListItem.vue'
+import AppMenuTaskItem from './AppMenuTaskItem'
+import AppMenuListItem from './AppMenuListItem'
 import { MENU_TASKS, MENU_LISTS } from '../../helpers/constants'
 
 export default {
