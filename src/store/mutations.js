@@ -5,6 +5,10 @@ export const TOGGLE_MENU = (state, value) => {
   state.appMenu.isMenuOpen = value
 }
 
+export const TOGGLE_MODAL = (state, payload) => {
+  state.modal[payload.name] = payload.value
+}
+
 export const SET_SELECTED_MENU_TASK = (state, task) => {
   state.appMenu.selectedTask = task
 }

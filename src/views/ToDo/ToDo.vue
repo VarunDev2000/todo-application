@@ -49,7 +49,13 @@
             class="text-md text-gray-700 hover:text-gray-900 cursor-pointer ml-3 mr-5"
             icon="fa-solid fa-trash"
             title="Delete"
-            @click="deleteMultipleToDoTask()"
+            @click="
+              () =>
+                toggleModal({
+                  name: 'isMultipleDeleteConfirmationModalOpen',
+                  value: true
+                })
+            "
           />
           <app-secondary-button :onclick="() => setSelectedToDoTaskList([])"
             >Cancel</app-secondary-button
@@ -61,6 +67,19 @@
     <div class="hidden 2xl:block">
       <todo-cud-item-form />
     </div>
+
+    <todo-delete-confirmation
+      :open="modal.isMultipleDeleteConfirmationModalOpen"
+      :data="selectedToDoTaskList"
+      :onConfirm="() => onDeleteConfirmClick()"
+      :onCancel="
+        () =>
+          toggleModal({
+            name: 'isMultipleDeleteConfirmationModalOpen',
+            value: false
+          })
+      "
+    />
   </div>
 </template>
 
@@ -70,6 +89,7 @@ import ToDoList from './components/ToDoList'
 import ToDoCUDItemForm from './components/ToDoCUDItemForm'
 import AppPrimaryButton from '@/components/AppPrimaryButton'
 import AppSecondaryButton from '../../components/AppSecondaryButton'
+import ToDoDeleteConfirmation from './components/ToDoDeleteConfirmation'
 import { getTitle } from '../../helpers/helpers'
 
 export default {
@@ -78,20 +98,34 @@ export default {
     'todo-list': ToDoList,
     'todo-cud-item-form': ToDoCUDItemForm,
     'app-primary-button': AppPrimaryButton,
-    'app-secondary-button': AppSecondaryButton
+    'app-secondary-button': AppSecondaryButton,
+    'todo-delete-confirmation': ToDoDeleteConfirmation
   },
   computed: {
-    ...mapState(['appMenu', 'selectedToDoTask', 'selectedToDoTaskList'])
+    ...mapState([
+      'modal',
+      'appMenu',
+      'selectedToDoTask',
+      'selectedToDoTaskList'
+    ])
   },
   methods: {
     getTitle,
     ...mapActions([
       'toggleMenu',
+      'toggleModal',
       'setSelectedToDoTask',
       'deleteMultipleToDoTask',
       'setSelectedToDoTaskList',
       'setMultipleTaskCompleted'
-    ])
+    ]),
+    onDeleteConfirmClick() {
+      this.deleteMultipleToDoTask()
+      this.toggleModal({
+        name: 'isMultipleDeleteConfirmationModalOpen',
+        value: false
+      })
+    }
   }
 }
 </script>

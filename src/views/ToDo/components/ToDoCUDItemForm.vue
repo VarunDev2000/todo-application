@@ -61,7 +61,13 @@
           </app-primary-button>
           <app-secondary-button
             class="w-full"
-            :onclick="() => deleteToDoTask(toDoItem.id)"
+            :onclick="
+              () =>
+                toggleModal({
+                  name: 'isDeleteConfirmationModalOpen',
+                  value: true
+                })
+            "
             >Delete task</app-secondary-button
           >
         </div>
@@ -73,6 +79,19 @@
         >
       </div>
     </form>
+
+    <todo-delete-confirmation
+      :open="modal.isDeleteConfirmationModalOpen"
+      :data="selectedToDoTask"
+      :onConfirm="() => onDeleteConfirmClick()"
+      :onCancel="
+        () =>
+          toggleModal({
+            name: 'isDeleteConfirmationModalOpen',
+            value: false
+          })
+      "
+    />
   </div>
 </template>
 
@@ -81,6 +100,7 @@ import { mapState, mapActions } from 'vuex'
 import DatePicker from 'vue2-datepicker'
 import AppPrimaryButton from '../../../components/AppPrimaryButton'
 import AppSecondaryButton from '../../../components/AppSecondaryButton'
+import ToDoDeleteConfirmation from './ToDoDeleteConfirmation'
 import { formatDate } from '../../../helpers/date'
 import { MENU_LISTS } from '@/helpers/constants'
 
@@ -89,7 +109,8 @@ export default {
   components: {
     'date-picker': DatePicker,
     'app-primary-button': AppPrimaryButton,
-    'app-secondary-button': AppSecondaryButton
+    'app-secondary-button': AppSecondaryButton,
+    'todo-delete-confirmation': ToDoDeleteConfirmation
   },
   data() {
     return {
@@ -105,7 +126,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['selectedToDoTask'])
+    ...mapState(['modal', 'selectedToDoTask'])
   },
   watch: {
     selectedToDoTask(newValue) {
@@ -117,7 +138,12 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setSelectedToDoTask', 'updateToDoTask', 'deleteToDoTask']),
+    ...mapActions([
+      'toggleModal',
+      'setSelectedToDoTask',
+      'updateToDoTask',
+      'deleteToDoTask'
+    ]),
     clearForm() {
       this.toDoItem = {
         id: null,
@@ -132,6 +158,13 @@ export default {
       this.$store.dispatch('addToDoItem', this.toDoItem)
       this.clearForm()
       this.$refs.addToDoItemForm.reset()
+    },
+    onDeleteConfirmClick() {
+      this.deleteToDoTask(this.toDoItem.id)
+      this.toggleModal({
+        name: 'isDeleteConfirmationModalOpen',
+        value: false
+      })
     }
   }
 }

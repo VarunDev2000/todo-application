@@ -2,6 +2,10 @@ export const toggleMenu = (context, value) => {
   context.commit('TOGGLE_MENU', value)
 }
 
+export const toggleModal = (context, payload) => {
+  context.commit('TOGGLE_MODAL', payload)
+}
+
 export const setSelectedMenuTask = (context, task) => {
   context.commit('SET_SELECTED_MENU_TASK', task)
 }

@@ -6,6 +6,10 @@ export const state = {
     selectedTask: MENU_TASKS[0].id,
     selectedList: ''
   },
+  modal: {
+    isDeleteConfirmationModalOpen: false,
+    isMultipleDeleteConfirmationModalOpen: false
+  },
   selectedToDoTask: null,
   selectedToDoTaskList: [],
   todo: [
