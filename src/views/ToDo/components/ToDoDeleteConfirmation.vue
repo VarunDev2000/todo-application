@@ -8,7 +8,9 @@
   >
     <div>
       <p class="mb-5">
-        The following task{{ data?.isArray ? 's' : '' }}
+        The following task{{
+          Array.isArray(data) && data?.length > 1 ? 's' : ''
+        }}
         will be deleted
       </p>
       <hr />
@@ -16,8 +18,8 @@
       <div v-if="!Array.isArray(data)"><ToBeDeletedData :todo="data" /></div>
 
       <div v-else>
-        <div v-for="todo in data" :key="todo?.id">
-          <tobe-deleted-data :todo="todo" />
+        <div v-for="todoId in data" :key="todoId">
+          <tobe-deleted-data :todo="getToDoById(todoId)" />
         </div>
       </div>
     </div>
@@ -28,6 +30,7 @@
 
 <script>
 import Vue from 'vue'
+import { mapState } from 'vuex'
 import AppModal from '@/components/AppModal'
 
 const ToBeDeletedData = Vue.component('ToBeDeletedData', {
@@ -54,15 +57,6 @@ const ToBeDeletedData = Vue.component('ToBeDeletedData', {
               />
               <p class="text-black ml-2">{{ todo?.date }}</p>
             </div>
-            <!-- <div
-              class="flex flex-row mt-2 items-center md:justify-center md:mt-0 md:ml-12"
-            >
-              <p
-                class="w-3 h-3 text-black rounded-md"
-                :style="{ backgroundColor: list?.color }"
-              />
-              <p class="ml-2">{{ list?.name }}</p>
-            </div> -->
           </div>
         </div>
         <hr />
@@ -91,6 +85,14 @@ export default {
     onCancel: {
       type: Function,
       default: null
+    }
+  },
+  computed: {
+    ...mapState({ todoList: 'todo' })
+  },
+  methods: {
+    getToDoById(id) {
+      return this.todoList.find((todo) => todo?.id === id)
     }
   }
 }
