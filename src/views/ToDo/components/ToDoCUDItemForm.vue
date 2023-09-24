@@ -123,7 +123,7 @@ export default {
         id: null,
         task: '',
         description: '',
-        list: 'Personal',
+        list: MENU_LISTS[0].id,
         date: formatDate(new Date()),
         completed: false
       }
