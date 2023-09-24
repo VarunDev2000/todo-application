@@ -18,27 +18,35 @@
           {{ todo?.task }}
         </p>
       </div>
-      <div>
+      <div class="flex flex-row justify-center items-center">
         <font-awesome-icon
-          class="text-lg text-gray-700 hover:text-gray-900"
-          v-if="!todo?.completed"
-          icon="fa-solid fa-check"
-          title="Mark as completed"
-          @click="setTaskCompleted({ taskId: todo?.id, completed: true })"
+          class="mx-8 cursor-pointer md:hidden"
+          icon="fa-solid fa-clone"
+          title="Duplicate"
+          @click="duplicate()"
         />
-        <font-awesome-icon
-          class="text-xl text-gray-700 hover:text-gray-900"
-          v-else
-          icon="fa-solid fa-xmark"
-          title="Mark as incomplete"
-          @click="setTaskCompleted({ taskId: todo?.id, completed: false })"
-        />
+        <div>
+          <font-awesome-icon
+            class="text-lg text-gray-700 hover:text-gray-900"
+            v-if="!todo?.completed"
+            icon="fa-solid fa-check"
+            title="Mark as completed"
+            @click="setTaskCompleted({ taskId: todo?.id, completed: true })"
+          />
+          <font-awesome-icon
+            class="text-xl text-gray-700 hover:text-gray-900"
+            v-else
+            icon="fa-solid fa-xmark"
+            title="Mark as incomplete"
+            @click="setTaskCompleted({ taskId: todo?.id, completed: false })"
+          />
+        </div>
       </div>
     </div>
     <div v-if="showMoreDetails" class="pl-9 pr-4 pb-3 moreDetails">
       <p>{{ todo?.description }}</p>
       <div class="flex flex-row justify-between items-center mt-5">
-        <div class="flex flex-row">
+        <div class="flex flex-col md:flex-row">
           <div class="flex flex-row items-center">
             <font-awesome-icon
               style="margin-bottom: 2px"
@@ -47,7 +55,9 @@
             />
             <p class="text-black ml-2">{{ todo?.date }}</p>
           </div>
-          <div class="flex flex-row justify-center items-center ml-12">
+          <div
+            class="flex flex-row mt-2 items-center md:justify-center md:mt-0 md:ml-12"
+          >
             <p
               class="w-3 h-3 text-black rounded-md"
               :style="{ backgroundColor: list?.color }"
@@ -58,17 +68,18 @@
 
         <div class="flex flex-row justify-center items-center ml-5">
           <font-awesome-icon
-            class="mx-5 cursor-pointer"
+            class="hidden mx-5 cursor-pointer md:block"
             icon="fa-solid fa-clone"
             title="Duplicate"
             @click="duplicate()"
           />
           <button
-            class="underline hover:text-black"
+            class="hidden 2xl:block underline hover:text-black"
             @click="setSelectedToDoTask(todo)"
           >
             Edit
           </button>
+          <button class="2xl:hidden underline hover:text-black">Edit</button>
         </div>
       </div>
     </div>

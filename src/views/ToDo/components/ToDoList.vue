@@ -1,5 +1,5 @@
 <template>
-  <div id="todo-list">
+  <div id="todo-list" class="w-auto 2xl:w-full">
     <div>
       <todo-list-item v-for="todo in todoList" :key="todo.id" :todo="todo" />
     </div>
@@ -25,7 +25,6 @@ export default {
 #todo-list {
   @apply flex flex-col;
   height: calc(100% - 68px);
-  width: 700px;
   overflow-y: auto;
 }
 </style>

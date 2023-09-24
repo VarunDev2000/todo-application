@@ -1,6 +1,9 @@
 <template>
-  <div id="todo">
-    <div class="px-6">
+  <div
+    id="todo"
+    class="w-full md:w-[calc(100vw-360px)] lg:w-[650px] 2xl:w-[1160px]"
+  >
+    <div class="w-full md:pl-5 2xl:px-5">
       <div class="flex flex-row justify-between items-center pb-7">
         <p class="font-extrabold text-4xl">
           {{ getTitle(appMenu.selectedTask) }}
@@ -8,9 +11,22 @@
         <app-secondary-button
           v-if="selectedToDoTask !== null"
           :onclick="() => setSelectedToDoTask(null)"
+          class="hidden 2xl:block"
         >
-          + Add task</app-secondary-button
+          Create task</app-secondary-button
         >
+        <div
+          class="flex flex-row items-center justify-center ml-3 mr-1 2xl:hidden"
+        >
+          <app-primary-button class="2xl:hidden w-auto px-4"
+            >Create task</app-primary-button
+          >
+          <font-awesome-icon
+            class="md:hidden text-xl ml-7 text-gray-700 hover:text-gray-900 cursor-pointer"
+            icon="fa-solid fa-bars"
+            title="Menu"
+          />
+        </div>
         <div
           class="flex flex-row justify-between items-center"
           v-if="selectedToDoTaskList.length > 0"
@@ -40,7 +56,9 @@
       </div>
       <todo-list />
     </div>
-    <todo-cud-item-form />
+    <div class="hidden 2xl:block">
+      <todo-cud-item-form />
+    </div>
   </div>
 </template>
 
@@ -48,8 +66,8 @@
 import { mapState, mapActions } from 'vuex'
 import ToDoList from './components/ToDoList'
 import ToDoCUDItemForm from './components/ToDoCUDItemForm'
+import AppPrimaryButton from '@/components/AppPrimaryButton'
 import AppSecondaryButton from '../../components/AppSecondaryButton'
-import { TITLE } from '../../helpers/constants'
 import { getTitle } from '../../helpers/helpers'
 
 export default {
@@ -57,12 +75,8 @@ export default {
   components: {
     'todo-list': ToDoList,
     'todo-cud-item-form': ToDoCUDItemForm,
+    'app-primary-button': AppPrimaryButton,
     'app-secondary-button': AppSecondaryButton
-  },
-  data() {
-    return {
-      TITLE
-    }
   },
   computed: {
     ...mapState(['appMenu', 'selectedToDoTask', 'selectedToDoTaskList'])
@@ -82,6 +96,5 @@ export default {
 <style lang="postcss" scoped>
 #todo {
   @apply h-full flex flex-row py-3;
-  width: 1160px;
 }
 </style>

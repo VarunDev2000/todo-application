@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <app-menu />
+    <div class="hidden md:block">
+      <app-menu />
+    </div>
     <router-view />
   </div>
 </template>
@@ -22,7 +24,7 @@ body {
 }
 
 #app {
-  @apply flex flex-row h-screen p-4 text-gray-700 text-sm;
+  @apply flex flex-row justify-center h-screen p-0 px-3 text-gray-700 text-sm sm:justify-start md:justify-center md:p-4;
   width: 1500px;
   overflow: hidden;
 }
@@ -33,6 +35,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ff0000;
+  background: black;
+  border-radius: 10px;
 }
 </style>

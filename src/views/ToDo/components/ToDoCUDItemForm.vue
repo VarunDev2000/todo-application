@@ -47,20 +47,20 @@
         v-if="selectedToDoTask === null"
         class="flex flex-row justify-between items-center mt-10"
       >
-        <app-primary-button type="submit" class="w-1/2 mr-2"
+        <app-primary-button type="submit" class="w-full mr-2"
           >Create task</app-primary-button
         >
-        <app-secondary-button class="w-1/2" :onclick="() => clearForm()"
+        <app-secondary-button class="w-full" :onclick="() => clearForm()"
           >Clear</app-secondary-button
         >
       </div>
       <div v-else class="mt-10">
         <div class="flex flex-row justify-between items-center">
-          <app-primary-button class="w-1/2 mr-2" type="submit">
+          <app-primary-button class="w-full mr-2" type="submit">
             Save changes
           </app-primary-button>
           <app-secondary-button
-            class="w-1/2"
+            class="w-full"
             :onclick="() => deleteToDoTask(toDoItem.id)"
             >Delete task</app-secondary-button
           >
@@ -141,7 +141,7 @@ export default {
 #todo-add-item-form {
   @apply flex flex-col justify-between rounded-xl h-full;
   background-color: #f4f4f4;
-  width: 460px;
+  width: 410px;
 }
 
 form {
