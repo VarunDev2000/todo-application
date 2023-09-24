@@ -2,7 +2,7 @@ import { MENU_TASKS } from '@/helpers/constants'
 
 export const state = {
   appMenu: {
-    isMenuOpen: true,
+    isMenuOpen: false,
     selectedTask: MENU_TASKS[0].id,
     selectedList: ''
   },

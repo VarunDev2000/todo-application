@@ -5,61 +5,66 @@
     :class="[appMenu.isMenuOpen ? 'hidden mx-0' : 'flex']"
   >
     <div class="w-full md:pl-5 2xl:px-5">
-      <div class="flex flex-row justify-between items-center pb-7">
+      <div class="flex flex-row justify-between 2xl:items-center pb-7">
         <p class="font-extrabold text-4xl">
           {{ getTitle(appMenu.selectedTask) }}
         </p>
-        <app-secondary-button
-          v-if="selectedToDoTask !== null"
-          :onclick="() => setSelectedToDoTask(null)"
-          class="hidden 2xl:block"
-        >
-          Create task</app-secondary-button
-        >
-        <div
-          class="flex flex-row items-center justify-center ml-3 mr-1 2xl:hidden"
-        >
-          <app-primary-button class="2xl:hidden w-auto px-4"
-            >Create task</app-primary-button
+
+        <div class="flex flex-col">
+          <app-secondary-button
+            v-if="selectedToDoTask !== null"
+            :onclick="() => setSelectedToDoTask(null)"
+            class="hidden 2xl:block"
           >
-          <font-awesome-icon
-            class="md:hidden text-xl ml-7 text-gray-700 hover:text-gray-900 cursor-pointer"
-            icon="fa-solid fa-bars"
-            title="Menu"
-            @click="toggleMenu(true)"
-          />
-        </div>
-        <div
-          class="flex flex-row justify-between items-center"
-          v-if="selectedToDoTaskList.length > 0"
-        >
-          <font-awesome-icon
-            class="text-xl text-gray-700 hover:text-gray-900 cursor-pointer mx-3"
-            icon="fa-solid fa-check"
-            title="Mark as completed"
-            @click="setMultipleTaskCompleted(true)"
-          />
-          <font-awesome-icon
-            class="text-xl text-gray-700 hover:text-gray-900 cursor-pointer mx-3"
-            icon="fa-solid fa-xmark"
-            title="Mark as incomplete"
-            @click="setMultipleTaskCompleted(false)"
-          />
-          <font-awesome-icon
-            class="text-md text-gray-700 hover:text-gray-900 cursor-pointer ml-3 mr-5"
-            icon="fa-solid fa-trash"
-            title="Delete"
-            @click="
-              () =>
-                toggleModal({
-                  name: 'isMultipleDeleteConfirmationModalOpen',
-                  value: true
-                })
-            "
-          />
-          <app-secondary-button :onclick="() => setSelectedToDoTaskList([])"
-            >Cancel</app-secondary-button
+            Create task</app-secondary-button
           >
+          <div
+            class="flex flex-row items-center justify-end ml-3 mr-1 mb-6 2xl:hidden"
+          >
+            <app-primary-button class="2xl:hidden w-auto px-4"
+              >Create task</app-primary-button
+            >
+            <font-awesome-icon
+              class="md:hidden text-xl ml-7 text-gray-700 hover:text-gray-900 cursor-pointer"
+              icon="fa-solid fa-bars"
+              title="Menu"
+              @click="toggleMenu(true)"
+            />
+          </div>
+          <div
+            class="flex flex-row justify-between items-center"
+            v-if="selectedToDoTaskList.length > 0"
+          >
+            <font-awesome-icon
+              class="text-xl text-gray-700 hover:text-gray-900 cursor-pointer mx-3"
+              icon="fa-solid fa-check"
+              title="Mark as completed"
+              @click="setMultipleTaskCompleted(true)"
+            />
+            <font-awesome-icon
+              class="text-xl text-gray-700 hover:text-gray-900 cursor-pointer mx-3"
+              icon="fa-solid fa-xmark"
+              title="Mark as incomplete"
+              @click="setMultipleTaskCompleted(false)"
+            />
+            <font-awesome-icon
+              class="text-md text-gray-700 hover:text-gray-900 cursor-pointer ml-3 mr-5"
+              icon="fa-solid fa-trash"
+              title="Delete"
+              @click="
+                () =>
+                  toggleModal({
+                    name: 'isMultipleDeleteConfirmationModalOpen',
+                    value: true
+                  })
+              "
+            />
+            <app-secondary-button
+              class="w-auto px-6"
+              :onclick="() => setSelectedToDoTaskList([])"
+              >Cancel</app-secondary-button
+            >
+          </div>
         </div>
       </div>
       <todo-list />
