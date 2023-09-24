@@ -25,8 +25,8 @@ export default {
   props: {
     task: Object,
     count: {
-      type: Number,
-      default: 14
+      type: [Number, String],
+      default: '-'
     },
     selected: {
       type: Boolean,

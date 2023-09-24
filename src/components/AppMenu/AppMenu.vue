@@ -21,6 +21,7 @@
             :key="menuTask.id"
             :task="menuTask"
             :selected="menuTask.id === appMenu.selectedTask"
+            :count="getMenuTaskCount(menuTask.menuTask)"
           />
         </div>
       </div>
@@ -35,6 +36,7 @@
             :key="menuList.id"
             :list="menuList"
             :selected="menuList.id === appMenu.selectedList"
+            :count="getMenuListCount(menuList.id)"
           />
         </div>
       </div>
@@ -54,6 +56,7 @@ import { mapState, mapActions } from 'vuex'
 import AppMenuTaskItem from './AppMenuTaskItem'
 import AppMenuListItem from './AppMenuListItem'
 import { MENU_TASKS, MENU_LISTS } from '../../helpers/constants'
+import { formatDate } from '@/helpers/date'
 
 export default {
   name: 'AppMenu',
@@ -68,10 +71,67 @@ export default {
     }
   },
   computed: {
-    ...mapState(['appMenu'])
+    ...mapState(['appMenu', 'todo'])
   },
   methods: {
-    ...mapActions(['toggleMenu'])
+    ...mapActions(['toggleMenu']),
+    getMenuTaskCount(menuTask) {
+      var count = 0
+      switch (menuTask) {
+        case 'All':
+          count = this.todo.length
+          break
+        case 'Pending':
+          this.todo.forEach((todo) => {
+            if (todo?.completed === false) {
+              count++
+            }
+          })
+          break
+        case 'Completed':
+          this.todo.forEach((todo) => {
+            if (todo?.completed === true) {
+              count++
+            }
+          })
+          break
+        case 'Today':
+          this.todo.forEach((todo) => {
+            if (todo?.date === formatDate(new Date())) {
+              count++
+            }
+          })
+          break
+        case 'Upcoming':
+          this.todo.forEach((todo) => {
+            if (
+              todo?.date !== formatDate(new Date()) &&
+              new Date(todo?.date) > new Date()
+            ) {
+              count++
+            }
+          })
+          break
+        default:
+          count = '-'
+          break
+      }
+
+      return count
+    },
+    getMenuListCount(id) {
+      var count = 0
+      for (var i = 0; i < MENU_LISTS.length; i++) {
+        if (MENU_LISTS[i].id === id) {
+          this.todo.forEach((todo) => {
+            if (todo?.list === id) {
+              count++
+            }
+          })
+        }
+      }
+      return count
+    }
   }
 }
 </script>
