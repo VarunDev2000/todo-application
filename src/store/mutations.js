@@ -1,6 +1,10 @@
 import { mergeDeepRight } from 'ramda'
 import { getToDoId } from '@/helpers/random'
 
+export const TOGGLE_MENU = (state, value) => {
+  state.appMenu.isMenuOpen = value
+}
+
 export const SET_SELECTED_MENU_TASK = (state, task) => {
   state.appMenu.selectedTask = task
 }

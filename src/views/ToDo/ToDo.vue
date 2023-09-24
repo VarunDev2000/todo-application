@@ -1,7 +1,8 @@
 <template>
   <div
     id="todo"
-    class="w-full md:w-[calc(100vw-360px)] lg:w-[650px] 2xl:w-[1160px]"
+    class="w-full h-full py-5 mx-3 md:flex md:flex-row md:py-3 md:w-[calc(100vw-360px)] lg:w-[650px] 2xl:w-[1160px]"
+    :class="[appMenu.isMenuOpen ? 'hidden mx-0' : 'flex']"
   >
     <div class="w-full md:pl-5 2xl:px-5">
       <div class="flex flex-row justify-between items-center pb-7">
@@ -25,6 +26,7 @@
             class="md:hidden text-xl ml-7 text-gray-700 hover:text-gray-900 cursor-pointer"
             icon="fa-solid fa-bars"
             title="Menu"
+            @click="toggleMenu(true)"
           />
         </div>
         <div
@@ -84,6 +86,7 @@ export default {
   methods: {
     getTitle,
     ...mapActions([
+      'toggleMenu',
       'setSelectedToDoTask',
       'deleteMultipleToDoTask',
       'setSelectedToDoTaskList',
@@ -93,8 +96,4 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
-#todo {
-  @apply h-full flex flex-row py-3;
-}
-</style>
+<style scoped></style>

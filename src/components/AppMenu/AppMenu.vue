@@ -1,7 +1,15 @@
 <template>
-  <div id="appMenu">
+  <div id="appMenu" :class="[appMenu.isMenuOpen ? 'flex' : 'hidden']">
     <div>
-      <p class="title">Menu</p>
+      <div class="flex flex-row justify-between items-center">
+        <p class="title">Menu</p>
+        <font-awesome-icon
+          class="md:hidden text-2xl text-gray-700 hover:text-gray-900 cursor-pointer ml-3"
+          icon="fa-solid fa-xmark"
+          title="Close menu"
+          @click="toggleMenu(false)"
+        />
+      </div>
 
       <hr />
 
@@ -42,7 +50,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import AppMenuTaskItem from './AppMenuTaskItem'
 import AppMenuListItem from './AppMenuListItem'
 import { MENU_TASKS, MENU_LISTS } from '../../helpers/constants'
@@ -61,15 +69,17 @@ export default {
   },
   computed: {
     ...mapState(['appMenu'])
+  },
+  methods: {
+    ...mapActions(['toggleMenu'])
   }
 }
 </script>
 
 <style lang="postcss" scoped>
 #appMenu {
-  @apply flex flex-col justify-between rounded-xl px-5 py-4 h-full;
+  @apply w-screen h-screen  md:flex flex-col justify-between rounded-xl px-5 py-4 md:w-[340px] md:h-full;
   background-color: #f4f4f4;
-  width: 340px;
   overflow-x: hidden;
   overflow-y: auto;
 }
