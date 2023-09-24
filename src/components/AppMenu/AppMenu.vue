@@ -153,7 +153,6 @@ hr {
 }
 
 .subtitle {
-  @apply font-semibold uppercase pb-2 tracking-wide;
-  font-size: 13px;
+  @apply font-semibold uppercase pb-2 tracking-wide text-[13px];
 }
 </style>

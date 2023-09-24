@@ -43,7 +43,10 @@
         </div>
       </div>
     </div>
-    <div v-if="showMoreDetails" class="pl-9 pr-4 pb-3 moreDetails">
+    <div
+      v-if="showMoreDetails"
+      class="pl-[38px] pr-4 pb-3 text-[14px] lg:text-[12px]"
+    >
       <p>{{ todo?.description }}</p>
       <div class="flex flex-row justify-between items-center mt-5">
         <div class="flex flex-col md:flex-row">
@@ -168,9 +171,5 @@ export default {
 <style lang="postcss" scoped>
 hr {
   @apply border-gray-200;
-}
-
-.moreDetails {
-  font-size: 12px;
 }
 </style>

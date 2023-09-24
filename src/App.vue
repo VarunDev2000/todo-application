@@ -22,7 +22,7 @@ body {
 }
 
 #app {
-  @apply flex flex-row justify-center h-screen p-0 md:px-3 text-gray-700 text-sm sm:justify-start md:justify-center md:p-4;
+  @apply flex flex-row justify-center h-screen p-0 md:px-3 text-gray-700 lg:text-sm sm:justify-start md:justify-center md:p-4;
   width: 1500px;
   overflow: hidden;
 }
