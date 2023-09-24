@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-row justify-between items-center cursor-pointer rounded-md px-3 py-2 mb-1 hover:bg-gray-200"
+    class="flex flex-row justify-between items-center cursor-pointer rounded-md px-3 py-2 mb-1 lg:hover:bg-gray-200"
     :class="{ 'bg-gray-200': selected }"
     @click="setSelectedMenuList(list?.id)"
   >
