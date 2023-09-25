@@ -21,7 +21,9 @@
           <div
             class="flex flex-row items-center justify-end ml-3 mr-1 mb-6 2xl:hidden"
           >
-            <app-primary-button class="2xl:hidden w-auto px-4"
+            <app-primary-button
+              class="2xl:hidden w-auto px-4"
+              :onclick="() => openCreateToDoModal()"
               >Create task</app-primary-button
             >
             <font-awesome-icon
@@ -73,6 +75,13 @@
       <todo-cud-item-form />
     </div>
 
+    <todo-cud-item-popup-form
+      class="2xl:hidden"
+      :open="modal.isCUDItemModalOpen"
+      :onCancel="() => closeToDoCUDItemPopUpModal()"
+      ><todo-cud-item-form
+    /></todo-cud-item-popup-form>
+
     <todo-delete-confirmation
       :open="modal.isMultipleDeleteConfirmationModalOpen"
       :data="selectedToDoTaskList"
@@ -94,6 +103,7 @@ import ToDoList from './components/ToDoList'
 import ToDoCUDItemForm from './components/ToDoCUDItemForm'
 import AppPrimaryButton from '@/components/AppPrimaryButton'
 import AppSecondaryButton from '../../components/AppSecondaryButton'
+import ToDoCUDItemPopUpForm from './components/ToDoCUDItemPopUpForm'
 import ToDoDeleteConfirmation from './components/ToDoDeleteConfirmation'
 import { getTitle } from '../../helpers/helpers'
 
@@ -104,6 +114,7 @@ export default {
     'todo-cud-item-form': ToDoCUDItemForm,
     'app-primary-button': AppPrimaryButton,
     'app-secondary-button': AppSecondaryButton,
+    'todo-cud-item-popup-form': ToDoCUDItemPopUpForm,
     'todo-delete-confirmation': ToDoDeleteConfirmation
   },
   computed: {
@@ -124,6 +135,20 @@ export default {
       'setSelectedToDoTaskList',
       'setMultipleTaskCompleted'
     ]),
+    openCreateToDoModal() {
+      this.setSelectedToDoTask(null)
+      this.toggleModal({
+        name: 'isCUDItemModalOpen',
+        value: true
+      })
+    },
+    closeToDoCUDItemPopUpModal() {
+      this.setSelectedToDoTask(null)
+      this.toggleModal({
+        name: 'isCUDItemModalOpen',
+        value: false
+      })
+    },
     onDeleteConfirmClick() {
       this.deleteMultipleToDoTask()
       this.toggleModal({

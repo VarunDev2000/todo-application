@@ -78,13 +78,9 @@
             title="Duplicate"
             @click="duplicate()"
           />
-          <button
-            class="hidden 2xl:block underline hover:text-black"
-            @click="setSelectedToDoTask(todo)"
-          >
+          <button class="underline hover:text-black" @click="editToDo(todo)">
             Edit
           </button>
-          <button class="2xl:hidden underline hover:text-black">Edit</button>
         </div>
       </div>
     </div>
@@ -132,6 +128,7 @@ export default {
   },
   methods: {
     ...mapActions([
+      'toggleModal',
       'addToDoItem',
       'setSelectedToDoTask',
       'setSelectedToDoTaskList',
@@ -161,6 +158,13 @@ export default {
       var duplicateToDo = Object.assign({}, this.todo)
       duplicateToDo.completed = false
       this.addToDoItem(duplicateToDo)
+    },
+    editToDo(todo) {
+      this.setSelectedToDoTask(todo)
+      this.toggleModal({
+        name: 'isCUDItemModalOpen',
+        value: true
+      })
     },
     setSelectedToDoList() {
       const filteredList = this.selectedToDoTaskList.filter(

@@ -7,6 +7,7 @@ export const state = {
     selectedList: ''
   },
   modal: {
+    isCUDItemModalOpen: false,
     isDeleteConfirmationModalOpen: false,
     isMultipleDeleteConfirmationModalOpen: false
   },

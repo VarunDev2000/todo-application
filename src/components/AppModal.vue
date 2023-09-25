@@ -13,13 +13,26 @@
           class="relative h-auto max-h-[80%] w-[85%] md:w-[70%] xl:w-[55%] 2xl:w-[40%] overflow-x-hidden overflow-y-auto bg-white z-50 p-5 rounded-md"
         >
           <!-- Modal title -->
-          <p class="text-2xl font-semibold">{{ title }}</p>
+          <div class="flex flex-row justify-between items-center">
+            <p class="text-2xl font-semibold">{{ title }}</p>
+            <font-awesome-icon
+              class="text-2xl text-gray-700 hover:text-gray-900 cursor-pointer ml-3"
+              :class="[noFooter ? 'block' : 'hidden']"
+              icon="fa-solid fa-xmark"
+              title="Close"
+              @click="onCancel()"
+            />
+          </div>
+
           <!-- Modal body -->
           <div class="my-5">
             <slot />
           </div>
           <!-- Modal footer -->
-          <div class="w-full flex justify-end items-center">
+          <div
+            class="w-full flex justify-end items-center"
+            :class="{ hidden: noFooter }"
+          >
             <app-primary-button class="mr-3" :onclick="() => onSubmit()">{{
               submitButtonName
             }}</app-primary-button>
@@ -51,6 +64,10 @@ export default {
     submitButtonName: {
       type: String,
       default: 'Submit'
+    },
+    noFooter: {
+      type: Boolean,
+      default: false
     },
     onSubmit: {
       type: Function,

@@ -4,7 +4,7 @@
       class="h-full flex flex-col justify-between px-5 py-4"
       ref="addToDoItemForm"
       @submit.prevent="
-        selectedToDoTask === null ? addToDoItem() : updateToDoTask(toDoItem)
+        selectedToDoTask === null ? addToDoItem() : updateToDoItem()
       "
     >
       <div class="flex flex-col">
@@ -74,7 +74,7 @@
 
         <app-secondary-button
           class="w-full mt-3"
-          :onclick="() => setSelectedToDoTask(null)"
+          :onclick="() => onCancelClick()"
           >Cancel</app-secondary-button
         >
       </div>
@@ -125,16 +125,15 @@ export default {
       MENU_LISTS
     }
   },
+  mounted() {
+    this.setFormData(this.selectedToDoTask)
+  },
   computed: {
     ...mapState(['modal', 'selectedToDoTask'])
   },
   watch: {
     selectedToDoTask(newValue) {
-      if (newValue !== null) {
-        this.toDoItem = Object.assign({}, newValue)
-      } else {
-        this.clearForm()
-      }
+      this.setFormData(newValue)
     }
   },
   methods: {
@@ -158,11 +157,40 @@ export default {
       this.$store.dispatch('addToDoItem', this.toDoItem)
       this.clearForm()
       this.$refs.addToDoItemForm.reset()
+      this.toggleModal({
+        name: 'isCUDItemModalOpen',
+        value: false
+      })
+    },
+    setFormData(data) {
+      if (data !== null) {
+        this.toDoItem = Object.assign({}, data)
+      } else {
+        this.clearForm()
+      }
+    },
+    updateToDoItem() {
+      this.updateToDoTask(this.toDoItem)
+      this.toggleModal({
+        name: 'isCUDItemModalOpen',
+        value: false
+      })
+    },
+    onCancelClick() {
+      this.setSelectedToDoTask(null)
+      this.toggleModal({
+        name: 'isCUDItemModalOpen',
+        value: false
+      })
     },
     onDeleteConfirmClick() {
       this.deleteToDoTask(this.toDoItem.id)
       this.toggleModal({
         name: 'isDeleteConfirmationModalOpen',
+        value: false
+      })
+      this.toggleModal({
+        name: 'isCUDItemModalOpen',
         value: false
       })
     }
@@ -172,9 +200,8 @@ export default {
 
 <style lang="postcss" scoped>
 #todo-add-item-form {
-  @apply flex flex-col justify-between rounded-xl h-full;
+  @apply flex flex-col justify-between rounded-xl h-full w-full 2xl:w-[410px];
   background-color: #f4f4f4;
-  width: 410px;
 }
 
 form {
