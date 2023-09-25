@@ -14,8 +14,8 @@ export const setSelectedMenuList = (context, list) => {
   context.commit('SET_SELECTED_MENU_LIST', list)
 }
 
-export const addToDoItem = (context, item) => {
-  context.commit('ADD_TODO_ITEM', item)
+export const addToDoTask = (context, item) => {
+  context.commit('ADD_TODO_TASK', item)
 }
 
 export const setSelectedToDoTask = (context, todo) => {

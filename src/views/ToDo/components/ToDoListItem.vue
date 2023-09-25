@@ -129,7 +129,7 @@ export default {
   methods: {
     ...mapActions([
       'toggleModal',
-      'addToDoItem',
+      'addToDoTask',
       'setSelectedToDoTask',
       'setSelectedToDoTaskList',
       'setTaskCompleted'
@@ -157,7 +157,7 @@ export default {
     duplicate() {
       var duplicateToDo = Object.assign({}, this.todo)
       duplicateToDo.completed = false
-      this.addToDoItem(duplicateToDo)
+      this.addToDoTask(duplicateToDo)
     },
     editToDo(todo) {
       this.setSelectedToDoTask(todo)

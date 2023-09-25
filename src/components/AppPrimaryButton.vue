@@ -2,6 +2,7 @@
   <button
     class="w-40 bg-yellow-300 text-black py-2 rounded-lg font-semibold text-sm hover:bg-yellow-400"
     :type="type"
+    :disabled="disabled"
     @click="onclick"
   >
     <slot />
@@ -15,6 +16,10 @@ export default {
     type: {
       type: String,
       default: 'button'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     },
     onclick: {
       type: Function,

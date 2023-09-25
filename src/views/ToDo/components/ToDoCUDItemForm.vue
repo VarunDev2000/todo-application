@@ -8,18 +8,24 @@
       "
     >
       <div class="flex flex-col">
-        <input
-          type="text"
-          placeholder="Task"
-          v-model="toDoItem.task"
-          maxlength="100"
-          required
-        />
-        <textarea
-          placeholder="Description"
-          v-model="toDoItem.description"
-          maxlength="500"
-        />
+        <error-wrapper :error="error['task']">
+          <input
+            type="text"
+            placeholder="Task"
+            v-model="toDoItem.task"
+            maxlength="100"
+            @input="validateInput('task')"
+          />
+        </error-wrapper>
+
+        <error-wrapper :error="error['description']">
+          <textarea
+            placeholder="Description"
+            v-model="toDoItem.description"
+            maxlength="500"
+            @input="validateInput('description')"
+          />
+        </error-wrapper>
         <div class="flex flex-row items-center mb-5">
           <p class="mr-6">List</p>
           <select name="list" v-model="toDoItem.list">
@@ -39,29 +45,31 @@
             v-model="toDoItem.date"
             valueType="format"
             :clearable="false"
+            class="w-[50%] md:w-auto"
           />
         </div>
 
         <div class="flex flex-row justify-left items-center">
           <input type="checkbox" v-model="toDoItem.completed" />
-          <p class="text-black px-2">Completed</p>
+          <p class="text-black mx-2 pt-[2px] md:pt-0">Completed</p>
         </div>
       </div>
 
-      <div
+      <app-primary-button
         v-if="selectedToDoTask === null"
-        class="flex flex-row justify-between items-center mt-10"
+        type="submit"
+        :disabled="createOrSaveActionButtonDisabled"
+        class="w-full mr-2 mt-10"
+        >Create task</app-primary-button
       >
-        <app-primary-button type="submit" class="w-full mr-2"
-          >Create task</app-primary-button
-        >
-        <app-secondary-button class="w-full" :onclick="() => clearForm()"
-          >Clear</app-secondary-button
-        >
-      </div>
+
       <div v-else class="mt-10">
         <div class="flex flex-row justify-between items-center">
-          <app-primary-button class="w-full mr-2" type="submit">
+          <app-primary-button
+            type="submit"
+            :disabled="createOrSaveActionButtonDisabled"
+            class="w-full mr-2"
+          >
             Save changes
           </app-primary-button>
           <app-secondary-button
@@ -106,8 +114,11 @@ import DatePicker from 'vue2-datepicker'
 import AppPrimaryButton from '../../../components/AppPrimaryButton'
 import AppSecondaryButton from '../../../components/AppSecondaryButton'
 import ToDoDeleteConfirmation from './ToDoDeleteConfirmation'
+import ErrorWrapper from '@/components/ErrorWrapper'
 import { formatDate } from '../../../helpers/date'
+import { isNullOrEmpty } from '@/helpers/helpers'
 import { MENU_LISTS } from '@/helpers/constants'
+import { equals } from 'ramda'
 
 export default {
   name: 'ToDoCUDItemForm',
@@ -115,10 +126,12 @@ export default {
     'date-picker': DatePicker,
     'app-primary-button': AppPrimaryButton,
     'app-secondary-button': AppSecondaryButton,
-    'todo-delete-confirmation': ToDoDeleteConfirmation
+    'todo-delete-confirmation': ToDoDeleteConfirmation,
+    'error-wrapper': ErrorWrapper
   },
   data() {
     return {
+      createOrSaveActionButtonDisabled: true,
       toDoItem: {
         id: null,
         task: '',
@@ -127,6 +140,10 @@ export default {
         date: formatDate(new Date()),
         completed: false
       },
+      error: {
+        task: '',
+        description: ''
+      },
       MENU_LISTS
     }
   },
@@ -134,17 +151,35 @@ export default {
     this.setFormData(this.selectedToDoTask)
   },
   computed: {
-    ...mapState(['modal', 'selectedToDoTask'])
+    ...mapState(['modal', 'selectedToDoTask']),
+    isFormValid() {
+      return !isNullOrEmpty(this.toDoItem.task) &&
+        isNullOrEmpty(this.error?.task) &&
+        isNullOrEmpty(this.error?.description)
+        ? true
+        : false
+    }
   },
   watch: {
     selectedToDoTask(newValue) {
       this.setFormData(newValue)
+    },
+    toDoItem: {
+      handler: function (newValue) {
+        if (equals(newValue, this.selectedToDoTask)) {
+          this.createOrSaveActionButtonDisabled = true
+        } else {
+          this.createOrSaveActionButtonDisabled = !this.isFormValid
+        }
+      },
+      deep: true
     }
   },
   methods: {
     ...mapActions([
       'toggleModal',
       'setSelectedToDoTask',
+      'addToDoTask',
       'updateToDoTask',
       'deleteToDoTask'
     ]),
@@ -158,14 +193,48 @@ export default {
         completed: false
       }
     },
+    validateInput(name) {
+      const regexPattern = /^[A-Za-z\-0-9 ]+$/
+
+      switch (name) {
+        case 'task':
+          if (isNullOrEmpty(this.toDoItem[name])) {
+            this.error[name] = 'Task is required'
+            break
+          } else {
+            this.error[name] = ''
+          }
+          if (!regexPattern.test(this.toDoItem[name])) {
+            this.error[name] = 'Task name should not have special characters'
+          } else {
+            this.error[name] = ''
+          }
+          break
+        case 'description':
+          if (
+            !regexPattern.test(this.toDoItem[name]) &&
+            !isNullOrEmpty(this.toDoItem[name])
+          ) {
+            this.error[name] = 'Description should not have special characters'
+          } else {
+            this.error[name] = ''
+          }
+          break
+
+        default:
+          break
+      }
+    },
     addToDoItem() {
-      this.$store.dispatch('addToDoItem', this.toDoItem)
-      this.clearForm()
-      this.$refs.addToDoItemForm.reset()
-      this.toggleModal({
-        name: 'isCUDItemModalOpen',
-        value: false
-      })
+      if (this.isFormValid) {
+        this.addToDoTask(this.toDoItem)
+        this.clearForm()
+        this.$refs.addToDoItemForm.reset()
+        this.toggleModal({
+          name: 'isCUDItemModalOpen',
+          value: false
+        })
+      }
     },
     setFormData(data) {
       if (data !== null) {
@@ -175,11 +244,13 @@ export default {
       }
     },
     updateToDoItem() {
-      this.updateToDoTask(this.toDoItem)
-      this.toggleModal({
-        name: 'isCUDItemModalOpen',
-        value: false
-      })
+      if (this.isFormValid) {
+        this.updateToDoTask(this.toDoItem)
+        this.toggleModal({
+          name: 'isCUDItemModalOpen',
+          value: false
+        })
+      }
     },
     onCancelClick() {
       this.setSelectedToDoTask(null)
@@ -215,11 +286,11 @@ form {
 }
 
 input[type='text'] {
-  @apply p-3 mb-5 rounded-md;
+  @apply w-full p-3 rounded-md;
 }
 
 textarea {
-  @apply p-3 mb-5 rounded-md resize-none;
+  @apply w-full p-3 rounded-md resize-none;
   height: 150px;
 }
 
