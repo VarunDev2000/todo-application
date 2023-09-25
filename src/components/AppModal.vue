@@ -10,7 +10,7 @@
         class="fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center z-50"
       >
         <div
-          class="relative h-auto max-h-[80%] w-[85%] md:w-[70%] xl:w-[55%] 2xl:w-[40%] overflow-x-hidden overflow-y-auto bg-white z-50 p-5 rounded-md"
+          class="relative h-auto max-h-[90%] w-[85%] md:w-[70%] xl:w-[55%] 2xl:w-[40%] overflow-x-hidden overflow-y-auto bg-white z-50 p-5 rounded-md"
         >
           <!-- Modal title -->
           <div class="flex flex-row justify-between items-center">

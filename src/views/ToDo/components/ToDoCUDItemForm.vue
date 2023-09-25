@@ -15,6 +15,7 @@
             v-model="toDoItem.task"
             maxlength="100"
             @input="validateInput('task')"
+            :class="{ errorOutline: error['task'] }"
           />
         </error-wrapper>
 
@@ -24,6 +25,7 @@
             v-model="toDoItem.description"
             maxlength="500"
             @input="validateInput('description')"
+            :class="{ errorOutline: error['description'] }"
           />
         </error-wrapper>
         <div class="flex flex-row items-center mb-5">
@@ -290,8 +292,12 @@ input[type='text'] {
 }
 
 textarea {
-  @apply w-full p-3 rounded-md resize-none;
-  height: 150px;
+  @apply w-full h-[150px] p-3 rounded-md resize-none;
+}
+
+.errorOutline {
+  outline: red;
+  border: 2px solid red;
 }
 
 select {

@@ -5,7 +5,9 @@
     :class="[appMenu.isMenuOpen ? 'hidden mx-0' : 'flex']"
   >
     <div class="w-full md:pl-5 2xl:px-5">
-      <div class="flex flex-row justify-between 2xl:items-center pb-7">
+      <div
+        class="mx-1 md:mx-0 flex flex-row justify-between 2xl:items-center pb-7"
+      >
         <p class="font-extrabold text-2xl md:text-4xl">
           {{ getTitle(appMenu.selectedTask) }}
         </p>
