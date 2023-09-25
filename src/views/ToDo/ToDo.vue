@@ -46,7 +46,7 @@
             <font-awesome-icon
               class="text-xl text-gray-700 hover:text-gray-900 cursor-pointer mx-3"
               icon="fa-solid fa-xmark"
-              title="Mark as incomplete"
+              title="Mark as not completed"
               @click="setMultipleTaskCompleted(false)"
             />
             <font-awesome-icon
@@ -78,6 +78,7 @@
     <todo-cud-item-popup-form
       class="2xl:hidden"
       :open="modal.isCUDItemModalOpen"
+      :title="selectedToDoTask === null ? 'Create task' : 'Edit task'"
       :onCancel="() => closeToDoCUDItemPopUpModal()"
       ><todo-cud-item-form
     /></todo-cud-item-popup-form>

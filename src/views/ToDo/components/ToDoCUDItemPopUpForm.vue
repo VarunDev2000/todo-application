@@ -1,7 +1,7 @@
 <template>
   <modal
     :open="open"
-    title="Create task"
+    :title="title"
     submitButtonName="Create"
     noFooter
     :onSubmit="onConfirm"
@@ -23,6 +23,10 @@ export default {
     open: {
       type: Boolean,
       default: true
+    },
+    title: {
+      type: String,
+      default: 'Create task'
     },
     onConfirm: {
       type: Function,

@@ -33,13 +33,18 @@
           </select>
         </div>
 
-        <div class="flex flex-row items-center">
+        <div class="flex flex-row items-center mb-5">
           <p class="mr-6">Due date</p>
           <date-picker
             v-model="toDoItem.date"
             valueType="format"
             :clearable="false"
           />
+        </div>
+
+        <div class="flex flex-row justify-left items-center">
+          <input type="checkbox" v-model="toDoItem.completed" />
+          <p class="text-black px-2">Completed</p>
         </div>
       </div>
 
@@ -209,7 +214,7 @@ form {
   overflow-y: auto;
 }
 
-input {
+input[type='text'] {
   @apply p-3 mb-5 rounded-md;
 }
 

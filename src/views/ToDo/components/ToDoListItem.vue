@@ -37,7 +37,7 @@
             class="text-xl text-gray-700 hover:text-gray-900"
             v-else
             icon="fa-solid fa-xmark"
-            title="Mark as incomplete"
+            title="Mark as not completed"
             @click="setTaskCompleted({ taskId: todo?.id, completed: false })"
           />
         </div>
