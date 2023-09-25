@@ -47,8 +47,10 @@
       v-if="showMoreDetails"
       class="pl-[38px] pr-4 pb-3 text-[14px] lg:text-[12px]"
     >
-      <p>{{ todo?.description }}</p>
-      <div class="flex flex-row justify-between items-center mt-5">
+      <p :class="todo?.description !== '' ? 'mb-4' : ''">
+        {{ todo?.description }}
+      </p>
+      <div class="flex flex-row justify-between items-center mt-1">
         <div class="flex flex-col md:flex-row">
           <div class="flex flex-row items-center">
             <font-awesome-icon
