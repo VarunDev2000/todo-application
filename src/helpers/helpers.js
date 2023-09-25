@@ -1,5 +1,8 @@
+import { isEmpty, isNil } from 'ramda'
 import { MENU_LISTS, MENU_TASKS } from './constants'
 import { formatDate } from './date'
+
+export const isNullOrEmpty = (value) => isNil(value) || isEmpty(value)
 
 export const getTitle = (task) => {
   const data = {}
@@ -20,7 +23,7 @@ const getMenuTaskNameById = (menuTaskId) => {
 export const getFilteredData = (
   todoList = [],
   selectedMenuTask = MENU_TASKS[0]?.id,
-  selectedMenuList = null
+  selectedMenuList = ''
 ) => {
   var menuTask = getMenuTaskNameById(selectedMenuTask)
   var filteredToDoList = []
@@ -66,7 +69,7 @@ export const getFilteredData = (
   }
 
   // For Menu list
-  if (selectedMenuList !== null) {
+  if (!isNullOrEmpty(selectedMenuList)) {
     for (var i = 0; i < MENU_LISTS.length; i++) {
       var menuList = MENU_LISTS[i]
       if (menuList?.id === selectedMenuList) {
