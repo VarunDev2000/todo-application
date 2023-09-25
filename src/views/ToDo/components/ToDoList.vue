@@ -39,12 +39,16 @@ export default {
   computed: {
     ...mapState(['appMenu']),
     ...mapState({ todoList: 'todo' }),
-    filterChange() {
-      return [this.appMenu.selectedTask, this.appMenu.selectedList].join()
+    filterOrDataChange() {
+      return [
+        this.todoList,
+        this.appMenu.selectedTask,
+        this.appMenu.selectedList
+      ].join()
     }
   },
   watch: {
-    filterChange() {
+    filterOrDataChange() {
       this.updateFilteredList()
     }
   },

@@ -81,5 +81,14 @@ export const getFilteredData = (
     }
   }
 
+  if (filteredToDoList.length > 1) {
+    var sortedList = Object.assign([], filteredToDoList)
+    sortedList.sort((todo1, todo2) => {
+      return new Date(todo2?.createdTime) - new Date(todo1?.createdTime)
+    })
+
+    return sortedList
+  }
+
   return filteredToDoList
 }

@@ -24,6 +24,7 @@ export const SET_SELECTED_MENU_LIST = (state, list) => {
 
 export const ADD_TODO_ITEM = (state, item) => {
   item.id = getToDoId()
+  item.createdTime = new Date()
   state.todo.push(item)
   state.selectedToDoTaskList = []
 }

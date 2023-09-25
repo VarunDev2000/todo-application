@@ -93,6 +93,7 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import { MENU_LISTS } from '@/helpers/constants'
+import { formatDate } from '@/helpers/date'
 
 export default {
   name: 'ToDoListItem',
@@ -148,7 +149,11 @@ export default {
       this.list.color = list?.color
     },
     isPastDue() {
-      return new Date() > new Date(this.todo?.date) && !this.todo?.completed
+      return (
+        this.todo?.date !== formatDate(new Date()) &&
+        new Date() > new Date(this.todo?.date) &&
+        !this.todo?.completed
+      )
     },
     duplicate() {
       var duplicateToDo = Object.assign({}, this.todo)
