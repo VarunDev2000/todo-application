@@ -4,7 +4,7 @@
     <transition name="fade" appear>
       <div
         v-if="open"
-        class="absolute inset-0 bg-black opacity-[0.6] flex justify-center items-center z-[998]"
+        class="fixed inset-0 bg-black opacity-[0.5] flex justify-center items-center z-[998]"
       />
     </transition>
 
@@ -14,13 +14,13 @@
         class="fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center z-[999]"
       >
         <div
-          class="relative h-auto max-h-[90%] w-[85%] md:w-[70%] xl:w-[55%] 2xl:w-[40%] overflow-x-hidden overflow-y-auto bg-white z-[999] p-5 rounded-md"
+          class="relative h-auto max-h-[90%] w-[85%] md:w-[70%] xl:w-[55%] 2xl:w-[40%] overflow-x-hidden overflow-y-auto bg-white z-[999] p-5 rounded-md boxShadow"
         >
           <!-- Modal title -->
           <div class="flex flex-row justify-between items-center">
             <p class="text-2xl font-semibold">{{ title }}</p>
             <font-awesome-icon
-              class="text-2xl text-gray-700 hover:text-gray-900 cursor-pointer ml-3"
+              class="text-2xl text-gray-700 lg:hover:text-gray-900 cursor-pointer ml-3"
               :class="[noFooter ? 'block' : 'hidden']"
               icon="fa-solid fa-xmark"
               title="Close"
@@ -90,6 +90,10 @@ export default {
 </script>
 
 <style scoped>
+.boxShadow {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 .fade-enter-active {
   transition: opacity 0.3s ease;
 }

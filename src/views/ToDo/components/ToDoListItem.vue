@@ -27,14 +27,14 @@
         />
         <div>
           <font-awesome-icon
-            class="text-lg text-gray-700 hover:text-gray-900"
+            class="text-lg text-gray-700 lg:hover:text-gray-900"
             v-if="!todo?.completed"
             icon="fa-solid fa-check"
             title="Mark as completed"
             @click="setTaskCompleted({ taskId: todo?.id, completed: true })"
           />
           <font-awesome-icon
-            class="text-xl text-gray-700 hover:text-gray-900"
+            class="text-xl text-gray-700 lg:hover:text-gray-900"
             v-else
             icon="fa-solid fa-xmark"
             title="Mark as not completed"
@@ -80,7 +80,10 @@
               title="Duplicate"
               @click="duplicate()"
             />
-            <button class="underline hover:text-black" @click="editToDo(todo)">
+            <button
+              class="underline lg:hover:text-black"
+              @click="editToDo(todo)"
+            >
               Edit
             </button>
           </div>

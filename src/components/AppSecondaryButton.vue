@@ -1,6 +1,6 @@
 <template>
   <button
-    class="w-40 border bg-gray-100 border-gray-200 text-gray-600 py-2 rounded-lg font-semibold text-sm hover:bg-gray-200 transition ease-out duration-500"
+    class="w-40 border bg-gray-100 border-gray-200 text-gray-600 py-2 rounded-lg font-semibold text-sm lg:hover:bg-gray-200 transition ease-out duration-500"
     :type="type"
     @click="onclick"
   >

@@ -66,11 +66,11 @@
       >
 
       <div v-else class="mt-10">
-        <div class="flex flex-row justify-between items-center">
+        <div class="flex flex-col md:flex-row justify-between items-center">
           <app-primary-button
             type="submit"
             :disabled="createOrSaveActionButtonDisabled"
-            class="w-full mr-2"
+            class="w-full mb-3 md:mr-2"
           >
             Save changes
           </app-primary-button>
@@ -306,8 +306,6 @@ select {
   -moz-appearance: none;
   appearance: none;
   width: 50%;
-  height: 34px;
-  padding-top: 1.6%;
   padding-right: 35px;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAUCAMAAACtdX32AAAAdVBMVEUAAAD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhMdQaAAAAJ3RSTlMAAAECAwQGBwsOFBwkJTg5RUZ4eYCHkJefpaytrsXGy8zW3+Do8vNn0bsyAAAAYElEQVR42tXROwJDQAAA0Ymw1p9kiT+L5P5HVEi3qJn2lcPjtIuzUIJ/rhIGy762N3XaThqMN1ZPALsZPEzG1x8LrFL77DHBnEMxBewz0fJ6LyFHTPL7xhwzWYrJ9z22AqmQBV757MHfAAAAAElFTkSuQmCC);
   background-position: 100%;

@@ -5,7 +5,7 @@
         <div class="flex flex-row justify-between items-center">
           <p class="title">Menu</p>
           <font-awesome-icon
-            class="md:hidden text-2xl text-gray-700 hover:text-gray-900 cursor-pointer ml-3"
+            class="md:hidden text-2xl text-gray-700 lg:hover:text-gray-900 cursor-pointer ml-3"
             icon="fa-solid fa-xmark"
             title="Close menu"
             @click="toggleMenu(false)"
@@ -44,7 +44,7 @@
       </div>
 
       <div
-        class="flex flex-row items-center px-3 py-2 mt-7 rounded-md cursor-pointer hover:bg-gray-200"
+        class="flex flex-row items-center px-3 py-2 mt-7 rounded-md cursor-pointer lg:hover:bg-gray-200"
       >
         <font-awesome-icon icon="fa-solid fa-gear" />
         <p class="pl-3">Settings</p>

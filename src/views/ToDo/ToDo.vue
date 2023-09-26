@@ -29,7 +29,7 @@
               >Create task</app-primary-button
             >
             <font-awesome-icon
-              class="md:hidden text-xl ml-7 text-gray-700 hover:text-gray-900 cursor-pointer"
+              class="md:hidden text-xl ml-7 text-gray-700"
               icon="fa-solid fa-bars"
               title="Menu"
               @click="toggleMenu(true)"
@@ -40,19 +40,19 @@
             v-if="selectedToDoTaskList.length > 0"
           >
             <font-awesome-icon
-              class="text-xl text-gray-700 hover:text-gray-900 cursor-pointer mx-3"
+              class="text-xl text-gray-700 lg:hover:text-gray-900 cursor-pointer mx-3"
               icon="fa-solid fa-check"
               title="Mark as completed"
               @click="setMultipleTaskCompleted(true)"
             />
             <font-awesome-icon
-              class="text-xl text-gray-700 hover:text-gray-900 cursor-pointer mx-3"
+              class="text-xl text-gray-700 lg:hover:text-gray-900 cursor-pointer mx-3"
               icon="fa-solid fa-xmark"
               title="Mark as not completed"
               @click="setMultipleTaskCompleted(false)"
             />
             <font-awesome-icon
-              class="text-md text-gray-700 hover:text-gray-900 cursor-pointer ml-3 mr-5"
+              class="text-md text-gray-700 lg:hover:text-gray-900 cursor-pointer ml-3 mr-5"
               icon="fa-solid fa-trash"
               title="Delete"
               @click="
