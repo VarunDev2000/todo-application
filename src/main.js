@@ -18,6 +18,7 @@ import {
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import './assets/animation.css'
 import './assets/tailwind.css'
 
 library.add(

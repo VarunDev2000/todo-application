@@ -1,16 +1,20 @@
 <template>
-  <transition name="modal-fade">
-    <div v-if="open">
-      <!-- For modal backdrop -->
+  <div>
+    <!-- For modal backdrop -->
+    <transition name="fade" appear>
       <div
-        class="absolute inset-0 bg-black opacity-30 flex justify-center items-center z-40"
+        v-if="open"
+        class="absolute inset-0 bg-black opacity-[0.6] flex justify-center items-center z-[998]"
       />
+    </transition>
 
+    <transition name="bounce" appear>
       <div
-        class="fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center z-50"
+        v-if="open"
+        class="fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center z-[999]"
       >
         <div
-          class="relative h-auto max-h-[90%] w-[85%] md:w-[70%] xl:w-[55%] 2xl:w-[40%] overflow-x-hidden overflow-y-auto bg-white z-50 p-5 rounded-md"
+          class="relative h-auto max-h-[90%] w-[85%] md:w-[70%] xl:w-[55%] 2xl:w-[40%] overflow-x-hidden overflow-y-auto bg-white z-[999] p-5 rounded-md"
         >
           <!-- Modal title -->
           <div class="flex flex-row justify-between items-center">
@@ -42,8 +46,8 @@
           </div>
         </div>
       </div>
-    </div>
-  </transition>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -85,4 +89,17 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.fade-enter-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-leave-active {
+  transition: opacity 0.8s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

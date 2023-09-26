@@ -43,47 +43,50 @@
         </div>
       </div>
     </div>
-    <div
-      v-if="showMoreDetails"
-      class="pl-[38px] pr-4 pb-3 text-[14px] lg:text-[12px]"
-    >
-      <p :class="todo?.description !== '' ? 'mb-4' : ''">
-        {{ todo?.description }}
-      </p>
-      <div class="flex flex-row justify-between items-center mt-1">
-        <div class="flex flex-col md:flex-row">
-          <div class="flex flex-row items-center">
-            <font-awesome-icon
-              style="margin-bottom: 2px"
-              icon="fa-solid fa-calendar-xmark"
-              title="Due date"
-            />
-            <p class="text-black ml-2">{{ todo?.date }}</p>
-          </div>
-          <div
-            class="flex flex-row mt-2 items-center md:justify-center md:mt-0 md:ml-12"
-          >
-            <p
-              class="w-3 h-3 text-black rounded-md"
-              :style="{ backgroundColor: list?.color }"
-            />
-            <p class="ml-2">{{ list?.name }}</p>
-          </div>
-        </div>
 
-        <div class="flex flex-row justify-center items-center ml-5">
-          <font-awesome-icon
-            class="hidden mx-5 cursor-pointer md:block"
-            icon="fa-solid fa-clone"
-            title="Duplicate"
-            @click="duplicate()"
-          />
-          <button class="underline hover:text-black" @click="editToDo(todo)">
-            Edit
-          </button>
+    <transition name="slide-fade">
+      <div
+        v-if="showMoreDetails"
+        class="pl-[38px] pr-4 pb-3 text-[14px] lg:text-[12px]"
+      >
+        <p class="italic" :class="todo?.description !== '' ? 'mb-4' : ''">
+          {{ todo?.description }}
+        </p>
+        <div class="flex flex-row justify-between items-center mt-1">
+          <div class="flex flex-col md:flex-row">
+            <div class="flex flex-row items-center">
+              <font-awesome-icon
+                style="margin-bottom: 2px"
+                icon="fa-solid fa-calendar-xmark"
+                title="Due date"
+              />
+              <p class="ml-2">{{ todo?.date }}</p>
+            </div>
+            <div
+              class="flex flex-row mt-2 items-center md:justify-center md:mt-0 md:ml-12"
+            >
+              <p
+                class="w-3 h-3 text-black rounded-md"
+                :style="{ backgroundColor: list?.color }"
+              />
+              <p class="ml-2">{{ list?.name }}</p>
+            </div>
+          </div>
+
+          <div class="flex flex-row justify-center items-center ml-5">
+            <font-awesome-icon
+              class="hidden mx-5 cursor-pointer md:block"
+              icon="fa-solid fa-clone"
+              title="Duplicate"
+              @click="duplicate()"
+            />
+            <button class="underline hover:text-black" @click="editToDo(todo)">
+              Edit
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </transition>
     <hr />
   </div>
 </template>

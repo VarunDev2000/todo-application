@@ -46,7 +46,7 @@ const ToBeDeletedData = Vue.component('ToBeDeletedData', {
         </p>
 
         <div class="pl-7 pr-4 pb-3 text-[13px]">
-          <p>{{ todo?.description }}</p>
+          <p class="italic">{{ todo?.description }}</p>
 
           <div class="flex flex-row mt-2">
             <div class="flex flex-row items-center">
@@ -55,7 +55,7 @@ const ToBeDeletedData = Vue.component('ToBeDeletedData', {
                 icon="fa-solid fa-calendar-xmark"
                 title="Due date"
               />
-              <p class="text-black ml-2">{{ todo?.date }}</p>
+              <p class="ml-2">{{ todo?.date }}</p>
             </div>
           </div>
         </div>
