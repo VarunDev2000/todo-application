@@ -93,7 +93,8 @@ export default {
       return this.getFilteredData(this.todo, menuTask).length
     },
     getMenuListCount(id) {
-      return this.getFilteredData(this.todo, undefined, id).length
+      return this.getFilteredData(this.todo, this.appMenu.selectedTask, id)
+        .length
     }
   }
 }

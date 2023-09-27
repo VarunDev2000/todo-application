@@ -24,6 +24,21 @@
   opacity: 0;
 }
 
+.list-move,
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s;
+}
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.list-leave-active {
+  position: absolute;
+}
+
 /* bounce */
 .bounce-enter-active {
   animation: bounce-in 0.5s;

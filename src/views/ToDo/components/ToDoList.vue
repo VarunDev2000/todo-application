@@ -1,13 +1,20 @@
 <template>
   <div id="todo-list" class="w-auto 2xl:w-full">
-    <div v-if="filteredToDoList.length > 0">
-      <todo-list-item
-        v-for="todo in filteredToDoList"
-        :key="todo.id"
-        :todo="todo"
-      />
-    </div>
-    <div v-else class="flex flex-col justify-center items-center">
+    <transition name="fade">
+      <div v-if="filteredToDoList.length > 0">
+        <transition-group name="list" tag="p">
+          <todo-list-item
+            v-for="todo in filteredToDoList"
+            :key="todo.id"
+            :todo="todo"
+          />
+        </transition-group>
+      </div>
+    </transition>
+    <div
+      v-if="filteredToDoList.length <= 0"
+      class="flex flex-col justify-center items-center"
+    >
       <img
         class="w-[90%] h-[88%] md:w-[370px] md:h-[350px]"
         src="@/assets/images/404.png"
