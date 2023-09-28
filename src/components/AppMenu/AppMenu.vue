@@ -61,8 +61,8 @@
 import { mapState, mapActions } from 'vuex'
 import AppMenuTaskItem from './AppMenuTaskItem'
 import AppMenuListItem from './AppMenuListItem'
-import { MENU_TASKS, MENU_LISTS } from '../../helpers/constants'
-import { getFilteredData } from '@/helpers/helpers'
+import { MENU_TASKS, MENU_LISTS } from '../../utils/constants'
+import { getFilteredData } from '@/utils/helpers'
 
 export default {
   name: 'AppMenu',

@@ -1,6 +1,6 @@
-import { renderWrapper } from '@/helpers/test/render'
+import { renderWrapper } from '@/utils/test/render'
+import { MENU_TASKS } from '@/utils/constants'
 import { state } from '@/store/state'
-import { MENU_TASKS } from '@/helpers/constants'
 import ToDo from '@/views/ToDo/ToDo'
 
 describe('ToDo.vue', () => {

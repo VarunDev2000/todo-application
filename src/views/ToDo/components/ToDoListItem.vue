@@ -100,8 +100,8 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import { MENU_LISTS } from '@/helpers/constants'
-import { formatDate } from '@/helpers/date'
+import { MENU_LISTS } from '@/utils/constants'
+import { formatDate } from '@/utils/date'
 
 export default {
   name: 'ToDoListItem',

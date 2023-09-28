@@ -1,5 +1,5 @@
 import { mergeDeepRight } from 'ramda'
-import { getToDoId } from '@/helpers/random'
+import { getToDoId } from '@/utils/random'
 
 export const TOGGLE_MENU = (state, value) => {
   state.appMenu.isMenuOpen = value

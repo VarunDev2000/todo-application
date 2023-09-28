@@ -1,4 +1,4 @@
-import { MENU_TASKS } from '@/helpers/constants'
+import { MENU_TASKS } from '@/utils/constants'
 
 export const state = {
   appMenu: {

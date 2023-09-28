@@ -1,4 +1,4 @@
-import { renderWrapper } from '@/helpers/test/render'
+import { renderWrapper } from '@/utils/test/render'
 import { state } from '@/store/state'
 import App from '@/App'
 import AppMenu from '@/components/AppMenu/AppMenu'

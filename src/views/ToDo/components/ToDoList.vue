@@ -36,7 +36,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import { getFilteredData } from '@/helpers/helpers'
+import { getFilteredData } from '@/utils/helpers'
 import ToDoListItem from './ToDoListItem.vue'
 
 export default {

@@ -110,7 +110,7 @@ import AppPrimaryButton from '@/components/AppPrimaryButton'
 import AppSecondaryButton from '../../components/AppSecondaryButton'
 import ToDoCUDItemPopUpForm from './components/ToDoCUDItemPopUpForm'
 import ToDoDeleteConfirmation from './components/ToDoDeleteConfirmation'
-import { getTitle } from '../../helpers/helpers'
+import { getTitle } from '../../utils/helpers'
 
 export default {
   name: 'ToDo',
