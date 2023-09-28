@@ -9,7 +9,7 @@
     <div>
       <p class="mb-5">
         The following task{{
-          Array.isArray(data) && data?.length > 1 ? 's' : ''
+          Array.isArray(data) && data.length > 1 ? 's' : ''
         }}
         will be deleted
       </p>
@@ -42,11 +42,11 @@ const ToBeDeletedData = Vue.component('ToBeDeletedData', {
   },
   template: `<div>
     <p class="w-full mx-3 py-3">
-          {{ todo?.task }}
+          {{ todo.task }}
         </p>
 
         <div class="pl-7 pr-4 pb-3 text-[13px]">
-          <p class="italic">{{ todo?.description }}</p>
+          <p class="italic">{{ todo.description }}</p>
 
           <div class="flex flex-row mt-2">
             <div class="flex flex-row items-center">
@@ -55,7 +55,7 @@ const ToBeDeletedData = Vue.component('ToBeDeletedData', {
                 icon="fa-solid fa-calendar-xmark"
                 title="Due date"
               />
-              <p class="ml-2">{{ todo?.date }}</p>
+              <p class="ml-2">{{ todo.date }}</p>
             </div>
           </div>
         </div>
@@ -92,7 +92,7 @@ export default {
   },
   methods: {
     getToDoById(id) {
-      return this.todoList.find((todo) => todo?.id === id)
+      return this.todoList.find((todo) => todo.id === id)
     }
   }
 }

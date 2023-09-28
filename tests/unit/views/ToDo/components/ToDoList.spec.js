@@ -1,23 +1,21 @@
-import store from '@/store'
+import { renderWrapper } from '@/helpers/test/render'
+import { state } from '@/store/state'
+import { MENU_TASKS } from '@/helpers/constants'
 import ToDoList from '@/views/ToDo/components/ToDoList'
 import ToDoListItem from '@/views/ToDo/components/ToDoListItem'
-import { renderWrapper } from '@/helpers/test/render'
-import { MENU_TASKS } from '@/helpers/constants'
 
 describe('ToDoList.vue', () => {
   let actions = {
     setTaskCompleted: jest.fn()
   }
 
-  const renderToDoListItem = (
+  const renderToDoList = (
     selectedTask = MENU_TASKS[0].id,
     selectedList = ''
   ) => {
     let customStore = {
-      ...store,
-      actions,
       state: {
-        ...store.state,
+        ...state,
         appMenu: {
           isMenuOpen: false,
           selectedTask,
@@ -29,7 +27,7 @@ describe('ToDoList.vue', () => {
             task: 'Drink Water',
             description: 'Reminder to drink water',
             list: 'menu-list1',
-            date: '2023-09-29',
+            date: '2023-09-28',
             completed: false,
             createdTime:
               'Sat Sep 23 2023 20:32:58 GMT+0530 (India Standard Time)'
@@ -55,7 +53,8 @@ describe('ToDoList.vue', () => {
               'Mon Sep 25 2023 07:30:23 GMT+0530 (India Standard Time)'
           }
         ]
-      }
+      },
+      actions
     }
     return renderWrapper(
       ToDoList,
@@ -69,19 +68,19 @@ describe('ToDoList.vue', () => {
   }
 
   it('should display all todo tasks when "All" filter is selected in app menu', async () => {
-    const wrapper = renderToDoListItem()
+    const wrapper = renderToDoList()
     await wrapper.vm.$nextTick()
     expect(wrapper.findAll('[data-test="todo-list-item"]')).toHaveLength(3)
   })
 
   it('should display only pending todo tasks when "Pending" filter is selected in app menu', async () => {
-    const wrapper = renderToDoListItem(MENU_TASKS[1].id)
+    const wrapper = renderToDoList(MENU_TASKS[1].id)
     await wrapper.vm.$nextTick()
     expect(wrapper.findAll('[data-test="todo-list-item"]')).toHaveLength(2)
   })
 
   it('should display "Nothing to show here" when "Today" filter is selected in app menu', async () => {
-    const wrapper = renderToDoListItem(MENU_TASKS[3].id)
+    const wrapper = renderToDoList(MENU_TASKS[3].id)
     await wrapper.vm.$nextTick()
     expect(wrapper.text()).toContain('Nothing to show here')
   })

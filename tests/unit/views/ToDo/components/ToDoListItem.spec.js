@@ -1,6 +1,6 @@
-import store from '@/store'
-import ToDoListItem from '@/views/ToDo/components/ToDoListItem'
 import { renderWrapper } from '@/helpers/test/render'
+import { state } from '@/store/state'
+import ToDoListItem from '@/views/ToDo/components/ToDoListItem'
 
 describe('ToDoListItem.vue', () => {
   let wrapper
@@ -20,9 +20,8 @@ describe('ToDoListItem.vue', () => {
     setTaskCompleted: jest.fn()
   }
   let customStore = {
-    state: store.state,
-    actions,
-    mutations: store.mutations
+    state,
+    actions
   }
 
   beforeEach(() => {
@@ -35,7 +34,7 @@ describe('ToDoListItem.vue', () => {
     )
   })
 
-  it('all todo details should be displayed', async () => {
+  it('should display all todo details', async () => {
     expect(wrapper.text()).toContain(propsData.todo.task)
     await wrapper.findAll('[data-test="todo-task"').trigger('click')
     expect(wrapper.text()).toContain(propsData.todo.description)
@@ -48,13 +47,13 @@ describe('ToDoListItem.vue', () => {
     expect(wrapper.findAll('[data-test="todo-more-info"]')).toHaveLength(1)
   })
 
-  it('dispatch "toggleModal" when edit button is clicked', async () => {
+  it('should dispatch "toggleModal" when edit button is clicked', async () => {
     await wrapper.findAll('[data-test="todo-task"').trigger('click')
     await wrapper.findAll('[data-test="todo-item-edit-button"').trigger('click')
     expect(actions.toggleModal).toHaveBeenCalled()
   })
 
-  it('dispatch "setTaskCompleted" when completed or not completed button is clicked', async () => {
+  it('should dispatch "setTaskCompleted" when completed or not completed button is clicked', async () => {
     await wrapper
       .findAll('[data-test="todo-mark-completed-button"]')
       .trigger('click')

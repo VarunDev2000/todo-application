@@ -16,6 +16,7 @@
             maxlength="100"
             @input="validateInput('task')"
             :class="{ errorOutline: error['task'] }"
+            data-test="input-task-name"
           />
         </error-wrapper>
 
@@ -26,6 +27,7 @@
             maxlength="500"
             @input="validateInput('description')"
             :class="{ errorOutline: error['description'] }"
+            data-test="input-task-description"
           />
         </error-wrapper>
         <div class="flex flex-row items-center mb-5">
@@ -33,10 +35,10 @@
           <select name="list" v-model="toDoItem.list">
             <option
               v-for="menuList in MENU_LISTS"
-              :key="menuList?.id"
-              :value="menuList?.id"
+              :key="menuList.id"
+              :value="menuList.id"
             >
-              {{ menuList?.menuList }}
+              {{ menuList.menuList }}
             </option>
           </select>
         </div>
@@ -62,6 +64,7 @@
         type="submit"
         :disabled="createOrSaveActionButtonDisabled"
         class="w-full mr-2 mt-10"
+        data-test="create-task-button"
         >Create task</app-primary-button
       >
 
@@ -70,7 +73,8 @@
           <app-primary-button
             type="submit"
             :disabled="createOrSaveActionButtonDisabled"
-            class="w-full mb-3 md:mr-2"
+            class="w-full md:mr-2"
+            data-test="update-task-button"
           >
             Save changes
           </app-primary-button>
@@ -83,6 +87,7 @@
                   value: true
                 })
             "
+            data-test="delete-task-button"
             >Delete task</app-secondary-button
           >
         </div>
@@ -156,8 +161,8 @@ export default {
     ...mapState(['modal', 'selectedToDoTask']),
     isFormValid() {
       return !isNullOrEmpty(this.toDoItem.task) &&
-        isNullOrEmpty(this.error?.task) &&
-        isNullOrEmpty(this.error?.description)
+        isNullOrEmpty(this.error.task) &&
+        isNullOrEmpty(this.error.description)
         ? true
         : false
     }
