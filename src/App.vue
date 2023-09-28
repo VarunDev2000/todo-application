@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import AppMenu from './components/AppMenu/AppMenu'
+import AppMenu from '@/components/AppMenu'
 
 export default {
   components: {

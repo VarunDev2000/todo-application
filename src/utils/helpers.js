@@ -20,6 +20,7 @@ const getMenuTaskNameById = (menuTaskId) => {
   return menuTask.menuTask
 }
 
+// For filtering data. Will be called on menu filter change
 export const getFilteredData = (
   todoList = [],
   selectedMenuTask = MENU_TASKS[0].id,
@@ -28,7 +29,7 @@ export const getFilteredData = (
   var menuTask = getMenuTaskNameById(selectedMenuTask)
   var filteredToDoList = []
 
-  // For Menu task
+  // For Menu task filter
   switch (menuTask) {
     case 'All':
       filteredToDoList = todoList
@@ -68,7 +69,7 @@ export const getFilteredData = (
       break
   }
 
-  // For Menu list
+  // For Menu list filter
   if (!isNullOrEmpty(selectedMenuList)) {
     for (var i = 0; i < MENU_LISTS.length; i++) {
       var menuList = MENU_LISTS[i]
@@ -81,6 +82,7 @@ export const getFilteredData = (
     }
   }
 
+  // Sorting based on created time
   if (filteredToDoList.length > 1) {
     var sortedList = Object.assign([], filteredToDoList)
     sortedList.sort((todo1, todo2) => {

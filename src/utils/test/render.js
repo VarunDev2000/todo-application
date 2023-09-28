@@ -1,6 +1,6 @@
-import { isNullOrEmpty } from '@/utils/helpers'
-import { mount, shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
+import { mount, shallowMount, createLocalVue } from '@vue/test-utils'
+import { isNullOrEmpty } from '@/utils/helpers'
 
 const localVue = createLocalVue()
 

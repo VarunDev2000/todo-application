@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import ToDo from '../views/ToDo/ToDo.vue'
+import ToDo from '@/views/ToDo/ToDo'
 
 Vue.use(VueRouter)
 

@@ -1,7 +1,7 @@
 import { renderWrapper } from '@/utils/test/render'
 import { state } from '@/store/state'
 import App from '@/App'
-import AppMenu from '@/components/AppMenu/AppMenu'
+import AppMenu from '@/components/AppMenu'
 
 describe('App.vue', () => {
   it('should render app menu', async () => {

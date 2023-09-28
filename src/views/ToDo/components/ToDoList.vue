@@ -2,7 +2,7 @@
   <div id="todo-list" class="w-auto 2xl:w-full">
     <transition name="fade">
       <div v-if="filteredToDoList.length > 0">
-        <transition-group name="list" tag="p">
+        <transition-group name="list">
           <todo-list-item
             v-for="todo in filteredToDoList"
             :key="todo.id"
