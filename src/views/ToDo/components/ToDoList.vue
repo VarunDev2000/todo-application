@@ -7,6 +7,7 @@
             v-for="todo in filteredToDoList"
             :key="todo.id"
             :todo="todo"
+            data-test="todo-list-item"
           />
         </transition-group>
       </div>

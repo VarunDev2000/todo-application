@@ -10,12 +10,13 @@
         <p
           class="w-full mx-3 py-3"
           :class="{
-            'line-through': todo?.completed,
+            'line-through': todo.completed,
             'text-red-500': isPastDue()
           }"
           @click="toggleMoreDetails"
+          data-test="todo-task"
         >
-          {{ todo?.task }}
+          {{ todo.task }}
         </p>
       </div>
       <div class="flex flex-row justify-center items-center">
@@ -28,17 +29,18 @@
         <div>
           <font-awesome-icon
             class="text-lg text-gray-700 lg:hover:text-gray-900"
-            v-if="!todo?.completed"
+            v-if="!todo.completed"
             icon="fa-solid fa-check"
             title="Mark as completed"
-            @click="setTaskCompleted({ taskId: todo?.id, completed: true })"
+            @click="setTaskCompleted({ taskId: todo.id, completed: true })"
+            data-test="todo-mark-completed-button"
           />
           <font-awesome-icon
             class="text-xl text-gray-700 lg:hover:text-gray-900"
             v-else
             icon="fa-solid fa-xmark"
             title="Mark as not completed"
-            @click="setTaskCompleted({ taskId: todo?.id, completed: false })"
+            @click="setTaskCompleted({ taskId: todo.id, completed: false })"
           />
         </div>
       </div>
@@ -48,9 +50,10 @@
       <div
         v-if="showMoreDetails"
         class="pl-[38px] pr-4 pb-3 text-[14px] lg:text-[12px]"
+        data-test="todo-more-info"
       >
-        <p class="italic" :class="todo?.description !== '' ? 'mb-4' : ''">
-          {{ todo?.description }}
+        <p class="italic" :class="todo.description !== '' ? 'mb-4' : ''">
+          {{ todo.description }}
         </p>
         <div class="flex flex-row justify-between items-center mt-1">
           <div class="flex flex-col md:flex-row">
@@ -60,16 +63,16 @@
                 icon="fa-solid fa-calendar-xmark"
                 title="Due date"
               />
-              <p class="ml-2">{{ todo?.date }}</p>
+              <p class="ml-2">{{ todo.date }}</p>
             </div>
             <div
               class="flex flex-row mt-2 items-center md:justify-center md:mt-0 md:ml-12"
             >
               <p
                 class="w-3 h-3 text-black rounded-md"
-                :style="{ backgroundColor: list?.color }"
+                :style="{ backgroundColor: list.color }"
               />
-              <p class="ml-2">{{ list?.name }}</p>
+              <p class="ml-2">{{ list.name }}</p>
             </div>
           </div>
 
@@ -83,6 +86,7 @@
             <button
               class="underline lg:hover:text-black"
               @click="editToDo(todo)"
+              data-test="todo-item-edit-button"
             >
               Edit
             </button>
@@ -127,7 +131,7 @@ export default {
       this.getListDetails()
     },
     selectedToDoTaskList(newValue) {
-      if (!newValue.includes(this.todo?.id)) {
+      if (!newValue.includes(this.todo.id)) {
         this.selected = false
       }
     }
@@ -145,19 +149,19 @@ export default {
     },
     getListDetails() {
       const list = MENU_LISTS.filter((list) => {
-        if (list?.id === this.todo?.list) {
+        if (list.id === this.todo.list) {
           return list
         }
       })[0]
 
-      this.list.name = list?.menuList
-      this.list.color = list?.color
+      this.list.name = list.menuList
+      this.list.color = list.color
     },
     isPastDue() {
       return (
-        this.todo?.date !== formatDate(new Date()) &&
-        new Date() > new Date(this.todo?.date) &&
-        !this.todo?.completed
+        this.todo.date !== formatDate(new Date()) &&
+        new Date() > new Date(this.todo.date) &&
+        !this.todo.completed
       )
     },
     duplicate() {
@@ -174,10 +178,10 @@ export default {
     },
     setSelectedToDoList() {
       const filteredList = this.selectedToDoTaskList.filter(
-        (todoId) => todoId !== this.todo?.id
+        (todoId) => todoId !== this.todo.id
       )
       if (this.selected) {
-        filteredList.push(this.todo?.id)
+        filteredList.push(this.todo.id)
       }
       this.setSelectedToDoTaskList(filteredList)
     }
