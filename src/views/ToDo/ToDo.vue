@@ -17,6 +17,7 @@
             v-if="selectedToDoTask !== null"
             :onclick="() => setSelectedToDoTask(null)"
             class="hidden 2xl:block"
+            data-test="todo-create-task-button"
           >
             Create task</app-secondary-button
           >
@@ -38,6 +39,7 @@
           <div
             class="flex flex-row justify-between items-center"
             v-if="selectedToDoTaskList.length > 0"
+            data-test="todo-tasks-action-list"
           >
             <font-awesome-icon
               class="text-xl text-gray-700 lg:hover:text-gray-900 cursor-pointer mx-3"
