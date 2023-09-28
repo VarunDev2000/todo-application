@@ -94,3 +94,8 @@ export const getFilteredData = (
 
   return filteredToDoList
 }
+
+export const hasNoSpaces = (value) => {
+  const re = /^\S+$/
+  return re.test(value)
+}

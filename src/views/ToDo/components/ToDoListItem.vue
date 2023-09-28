@@ -1,17 +1,20 @@
 <template>
   <div>
-    <div class="flex flex-row justify-between items-center cursor-pointer px-3">
-      <div class="w-full flex flex-row justify-center items-center">
+    <div
+      class="w-full flex flex-row justify-end items-center cursor-pointer px-3"
+    >
+      <div class="flex flex-row justify-end items-center flex-1">
         <input
           type="checkbox"
           v-model="selected"
           @change="setSelectedToDoList"
         />
         <p
-          class="w-full mx-3 py-3"
+          class="flex-1 mx-3 py-3 break-words"
           :class="{
             'line-through': todo.completed,
-            'text-red-500': isPastDue()
+            'text-red-500': isPastDue(),
+            'break-all': hasNoSpaces(todo.task)
           }"
           @click="toggleMoreDetails"
           data-test="todo-task"
@@ -21,7 +24,7 @@
       </div>
       <div class="flex flex-row justify-center items-center">
         <font-awesome-icon
-          class="mx-8 cursor-pointer md:hidden"
+          class="ml-2 mr-8 cursor-pointer md:hidden"
           icon="fa-solid fa-clone"
           title="Duplicate"
           @click="duplicate()"
@@ -52,7 +55,13 @@
         class="pl-[38px] pr-4 pb-3 text-[14px] lg:text-[12px]"
         data-test="todo-more-info"
       >
-        <p class="italic" :class="todo.description !== '' ? 'mb-4' : ''">
+        <p
+          class="italic"
+          :class="[
+            todo.description !== '' ? 'mb-4' : '',
+            hasNoSpaces(todo.task) ? 'break-all' : 'break-words'
+          ]"
+        >
           {{ todo.description }}
         </p>
         <div class="flex flex-row justify-between items-center mt-1">
@@ -102,6 +111,7 @@
 import { mapState, mapActions } from 'vuex'
 import { MENU_LISTS } from '@/utils/constants'
 import { formatDate } from '@/utils/date'
+import { hasNoSpaces } from '@/utils/helpers'
 
 export default {
   name: 'ToDoListItem',
@@ -144,6 +154,7 @@ export default {
       'setSelectedToDoTaskList',
       'setTaskCompleted'
     ]),
+    hasNoSpaces,
     toggleMoreDetails() {
       this.showMoreDetails = !this.showMoreDetails
     },
