@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-row justify-between items-center cursor-pointer rounded-md px-3 py-2 mb-1 lg:hover:bg-gray-200"
+    class="flex flex-row justify-between items-center px-3 py-2 mb-1 cursor-pointer rounded-md lg:hover:bg-gray-200"
     :class="{ 'bg-gray-200': selected }"
     @click="setSelectedMenuList(list.id)"
   >
@@ -12,7 +12,7 @@
       <p class="pl-3">{{ list.menuList }}</p>
     </div>
     <p
-      class="bg-gray-200 w-7 h-5 flex justify-center items-center text-black text-xs font-bold rounded-sm"
+      class="w-7 h-5 bg-gray-200 flex justify-center items-center text-black text-xs font-bold rounded-sm"
       :class="{ 'bg-white': selected }"
     >
       {{ count }}

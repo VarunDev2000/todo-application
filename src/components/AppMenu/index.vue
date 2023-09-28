@@ -1,15 +1,15 @@
 <template>
   <transition :name="isMediumSizeScreen ? '' : 'fade'">
     <div
-      id="appMenu"
+      class="w-screen h-screen bg-[#f4f4f4] fixed flex-col justify-between px-5 py-4 rounded-xl overflow-x-hidden overflow-y-auto md:w-[340px] md:h-full md:static"
       v-if="isMediumSizeScreen || appMenu.isMenuOpen"
       data-test="app-menu"
     >
       <div>
         <div class="flex flex-row justify-between items-center">
-          <p class="title">Menu</p>
+          <p class="text-xl font-semibold">Menu</p>
           <font-awesome-icon
-            class="md:hidden text-2xl text-gray-700 lg:hover:text-gray-900 cursor-pointer ml-3"
+            class="text-2xl text-gray-700 ml-3 cursor-pointer md:hidden lg:hover:text-gray-900"
             icon="fa-solid fa-xmark"
             title="Close menu"
             @click="toggleMenu(false)"
@@ -59,10 +59,10 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { MENU_TASKS, MENU_LISTS } from '@/utils/constants'
+import { getFilteredData } from '@/utils/helpers'
 import AppMenuTaskItem from './AppMenuTaskItem'
 import AppMenuListItem from './AppMenuListItem'
-import { MENU_TASKS, MENU_LISTS } from '../../utils/constants'
-import { getFilteredData } from '@/utils/helpers'
 
 export default {
   name: 'AppMenu',
@@ -78,8 +78,8 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener('resize', this.checkIsMediumSizeScreen)
     this.checkIsMediumSizeScreen()
+    window.addEventListener('resize', this.checkIsMediumSizeScreen)
   },
   beforeUnmount() {
     window.removeEventListener('resize', this.checkIsMediumSizeScreen)
@@ -105,19 +105,8 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-#appMenu {
-  @apply w-screen h-screen fixed flex-col justify-between rounded-xl px-5 py-4 md:static md:w-[340px] md:h-full;
-  background-color: #f4f4f4;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
 hr {
   @apply border-gray-200 my-4;
-}
-
-.title {
-  @apply text-xl font-semibold;
 }
 
 .subtitle {
