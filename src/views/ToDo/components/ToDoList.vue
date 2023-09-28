@@ -21,7 +21,15 @@
         src="@/assets/images/404.png"
         alt="Nothing to show here"
       />
-      <p class="text-gray-500 text-lg">Nothing to show here....</p>
+      <p class="text-gray-500 text-lg italic text-center mb-2">
+        Nothing to show here....
+      </p>
+      <p
+        v-if="todoList.length <= 0"
+        class="text-gray-500 text-[13px] italic mb-10"
+      >
+        Tasks you add will be displayed here
+      </p>
     </div>
   </div>
 </template>

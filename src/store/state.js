@@ -19,7 +19,7 @@ export const state = {
       task: 'Drink Water',
       description: 'Reminder to drink water',
       list: 'menu-list1',
-      date: '2023-09-29',
+      date: '2023-09-28',
       completed: false,
       createdTime: 'Sat Sep 23 2023 20:32:58 GMT+0530 (India Standard Time)'
     },
