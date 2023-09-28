@@ -62,13 +62,13 @@ export const DELETE_TODO_TASK = (state, taskId) => {
 
 export const DELETE_MULTIPLE_TODO_TASKS = (state) => {
   const tasksTobeDeleted = state.selectedToDoTaskList
-  state.todo = state.todo.filter((todo) => !tasksTobeDeleted.includes(todo?.id))
+  state.todo = state.todo.filter((todo) => !tasksTobeDeleted.includes(todo.id))
   state.selectedToDoTaskList = []
 }
 
 export const SET_TASK_COMPLETED = (state, payload) => {
   state.todo = state.todo.map((todo) => {
-    if (todo?.id === payload.taskId && todo?.completed !== payload.completed) {
+    if (todo.id === payload.taskId && todo.completed !== payload.completed) {
       todo.completed = payload.completed
     }
     return todo
@@ -78,7 +78,7 @@ export const SET_TASK_COMPLETED = (state, payload) => {
 export const SET_MULTIPLE_TASK_COMPLETED = (state, completed) => {
   const taskIdList = state.selectedToDoTaskList
   state.todo = state.todo.map((todo) => {
-    if (taskIdList.includes(todo?.id) && todo?.completed !== completed) {
+    if (taskIdList.includes(todo.id) && todo.completed !== completed) {
       todo.completed = completed
     }
     return todo

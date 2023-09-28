@@ -8,21 +8,21 @@ export const getTitle = (task) => {
   const data = {}
 
   MENU_TASKS.forEach((menuTask) => {
-    data[menuTask?.id] = menuTask?.menuTask
+    data[menuTask.id] = menuTask.menuTask
   })
 
   return data[task]
 }
 
 const getMenuTaskNameById = (menuTaskId) => {
-  const menuTask = MENU_TASKS.find((menuTask) => menuTask?.id === menuTaskId)
+  const menuTask = MENU_TASKS.find((menuTask) => menuTask.id === menuTaskId)
 
-  return menuTask?.menuTask
+  return menuTask.menuTask
 }
 
 export const getFilteredData = (
   todoList = [],
-  selectedMenuTask = MENU_TASKS[0]?.id,
+  selectedMenuTask = MENU_TASKS[0].id,
   selectedMenuList = ''
 ) => {
   var menuTask = getMenuTaskNameById(selectedMenuTask)
@@ -35,21 +35,21 @@ export const getFilteredData = (
       break
     case 'Pending':
       todoList.forEach((todo) => {
-        if (todo?.completed === false) {
+        if (todo.completed === false) {
           filteredToDoList.push(todo)
         }
       })
       break
     case 'Completed':
       todoList.forEach((todo) => {
-        if (todo?.completed === true) {
+        if (todo.completed === true) {
           filteredToDoList.push(todo)
         }
       })
       break
     case 'Today':
       todoList.forEach((todo) => {
-        if (todo?.date === formatDate(new Date())) {
+        if (todo.date === formatDate(new Date())) {
           filteredToDoList.push(todo)
         }
       })
@@ -57,8 +57,8 @@ export const getFilteredData = (
     case 'Upcoming':
       todoList.forEach((todo) => {
         if (
-          todo?.date !== formatDate(new Date()) &&
-          new Date(todo?.date) > new Date()
+          todo.date !== formatDate(new Date()) &&
+          new Date(todo.date) > new Date()
         ) {
           filteredToDoList.push(todo)
         }
@@ -72,9 +72,9 @@ export const getFilteredData = (
   if (!isNullOrEmpty(selectedMenuList)) {
     for (var i = 0; i < MENU_LISTS.length; i++) {
       var menuList = MENU_LISTS[i]
-      if (menuList?.id === selectedMenuList) {
+      if (menuList.id === selectedMenuList) {
         filteredToDoList = filteredToDoList.filter(
-          (todo) => todo?.list === selectedMenuList
+          (todo) => todo.list === selectedMenuList
         )
         break
       }
@@ -84,7 +84,7 @@ export const getFilteredData = (
   if (filteredToDoList.length > 1) {
     var sortedList = Object.assign([], filteredToDoList)
     sortedList.sort((todo1, todo2) => {
-      return new Date(todo2?.createdTime) - new Date(todo1?.createdTime)
+      return new Date(todo2.createdTime) - new Date(todo1.createdTime)
     })
 
     return sortedList

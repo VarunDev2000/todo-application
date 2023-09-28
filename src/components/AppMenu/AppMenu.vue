@@ -1,6 +1,10 @@
 <template>
   <transition :name="isMediumSizeScreen ? '' : 'fade'">
-    <div id="appMenu" v-if="isMediumSizeScreen || appMenu?.isMenuOpen">
+    <div
+      id="appMenu"
+      v-if="isMediumSizeScreen || appMenu.isMenuOpen"
+      data-test="app-menu"
+    >
       <div>
         <div class="flex flex-row justify-between items-center">
           <p class="title">Menu</p>
@@ -19,10 +23,10 @@
           <div>
             <app-menu-task-item
               v-for="menuTask in MENU_TASKS"
-              :key="menuTask?.id"
+              :key="menuTask.id"
               :task="menuTask"
-              :selected="menuTask?.id === appMenu.selectedTask"
-              :count="getMenuTaskCount(menuTask?.id)"
+              :selected="menuTask.id === appMenu.selectedTask"
+              :count="getMenuTaskCount(menuTask.id)"
             />
           </div>
         </div>
@@ -34,10 +38,10 @@
           <div>
             <app-menu-list-item
               v-for="menuList in MENU_LISTS"
-              :key="menuList?.id"
+              :key="menuList.id"
               :list="menuList"
-              :selected="menuList?.id === appMenu.selectedList"
-              :count="getMenuListCount(menuList?.id)"
+              :selected="menuList.id === appMenu.selectedList"
+              :count="getMenuListCount(menuList.id)"
             />
           </div>
         </div>
