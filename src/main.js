@@ -15,11 +15,11 @@ import {
   faPlus,
   faBars
 } from '@fortawesome/free-solid-svg-icons'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import './assets/animation.css'
-import './assets/tailwind.css'
+import App from '@/App'
+import router from '@/router'
+import store from '@/store'
+import '@/assets/styles/animation.css'
+import '@/assets/styles/tailwind.css'
 
 library.add(
   faList,
