@@ -1,6 +1,6 @@
 <template>
   <modal :open="modal.showWelcomeModal" noHeader noFooter>
-    <div class="flex flex-col justify-center items-center bg-white text-sm">
+    <div class="bg-white flex flex-col justify-center items-center text-sm">
       <p class="text-4xl font-semibold mb-5">Hello there👋</p>
       <img src="@/assets/images/rocket.gif" class="md:w-[270px] md:h-[200px]" />
 
@@ -11,7 +11,7 @@
       </p>
       <p class="mb-8">Again welcome to have you onboard, have a look around!</p>
       <app-primary-button
-        class="w-auto text-[15px] rounded-lg px-7 py-3"
+        class="w-auto text-[15px] px-7 py-3 rounded-lg"
         :onclick="() => closeWelcomePopUpModal()"
         >Let's go🔥</app-primary-button
       >

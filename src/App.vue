@@ -10,7 +10,6 @@
 
 <script>
 import { mapActions } from 'vuex'
-import { isNullOrEmpty } from '@/utils/helpers'
 import AppMenu from '@/components/AppMenu'
 import AppWelcomePopUp from '@/components/AppWelcomePopUp'
 
@@ -31,12 +30,7 @@ export default {
   methods: {
     ...mapActions(['setToDoList']),
     refreshApplicationOnStorageChange() {
-      const storageData = localStorage.getItem('foo-key')
-      if (isNullOrEmpty(storageData)) {
-        window.location.reload()
-      } else {
-        this.setToDoList(storageData.todo)
-      }
+      window.location.reload()
     }
   }
 }

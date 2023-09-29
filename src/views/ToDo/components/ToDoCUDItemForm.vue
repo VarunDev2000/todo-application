@@ -75,7 +75,7 @@
           <app-primary-button
             type="submit"
             :disabled="createOrSaveActionButtonDisabled"
-            class="w-full md:mr-2"
+            class="w-full mb-3 md:mr-2 md:mb-0"
             :data-test="DATA_TEST_ID.TODO_CUD_ITEM_FORM_UPDATE_TASK_BUTTON"
           >
             Save changes
