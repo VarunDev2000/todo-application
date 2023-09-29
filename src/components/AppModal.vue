@@ -4,23 +4,23 @@
     <transition name="fade" appear>
       <div
         v-if="open"
-        class="fixed inset-0 bg-black opacity-[0.5] flex justify-center items-center z-[998]"
+        class="fixed flex justify-center items-center bg-black inset-0 opacity-[0.5] z-[998]"
       />
     </transition>
 
     <transition name="bounce" appear>
       <div
         v-if="open"
-        class="fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center z-[999]"
+        class="fixed flex justify-center items-center overflow-x-hidden overflow-y-auto inset-0 z-[999]"
       >
         <div
-          class="relative h-auto max-h-[90%] w-[85%] md:w-[70%] xl:w-[55%] 2xl:w-[40%] overflow-x-hidden overflow-y-auto bg-white z-[999] p-5 rounded-md boxShadow"
+          class="relative h-auto max-h-[90%] w-[85%] bg-white p-5 rounded-md overflow-x-hidden overflow-y-auto z-[999] md:w-[70%] xl:w-[55%] 2xl:w-[40%] boxShadow"
         >
           <!-- Modal title -->
           <div class="flex flex-row justify-between items-center">
             <p class="text-2xl font-semibold">{{ title }}</p>
             <font-awesome-icon
-              class="text-2xl text-gray-700 lg:hover:text-gray-900 cursor-pointer ml-3"
+              class="ml-3 text-2xl text-gray-700 cursor-pointer lg:hover:text-gray-900"
               :class="[noFooter ? 'block' : 'hidden']"
               icon="fa-solid fa-xmark"
               title="Close"
