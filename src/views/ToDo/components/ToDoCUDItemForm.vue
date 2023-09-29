@@ -1,5 +1,7 @@
 <template>
-  <div id="todo-add-item-form">
+  <div
+    class="w-full h-full bg-[#f4f4f4] flex flex-col justify-between rounded-xl 2xl:w-[410px]"
+  >
     <form
       class="h-full flex flex-col justify-between px-5 py-4"
       ref="addToDoItemForm"
@@ -63,13 +65,13 @@
         v-if="selectedToDoTask === null"
         type="submit"
         :disabled="createOrSaveActionButtonDisabled"
-        class="w-full mr-2 mt-10"
+        class="w-full mt-10 mr-2"
         data-test="create-task-button"
         >Create task</app-primary-button
       >
 
       <div v-else class="mt-10">
-        <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex flex-col justify-between items-center md:flex-row">
           <app-primary-button
             type="submit"
             :disabled="createOrSaveActionButtonDisabled"
@@ -118,14 +120,14 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import DatePicker from 'vue2-datepicker'
-import AppPrimaryButton from '../../../components/AppPrimaryButton'
-import AppSecondaryButton from '../../../components/AppSecondaryButton'
+import { equals } from 'ramda'
+import AppPrimaryButton from '@/components/AppPrimaryButton'
+import AppSecondaryButton from '@/components/AppSecondaryButton'
 import ToDoDeleteConfirmation from './ToDoDeleteConfirmation'
 import ErrorWrapper from '@/components/ErrorWrapper'
-import { formatDate } from '../../../utils/date'
+import { formatDate } from '@/utils/date'
 import { isNullOrEmpty } from '@/utils/helpers'
 import { MENU_LISTS } from '@/utils/constants'
-import { equals } from 'ramda'
 
 export default {
   name: 'ToDoCUDItemForm',
@@ -282,11 +284,6 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-#todo-add-item-form {
-  @apply flex flex-col justify-between rounded-xl h-full w-full 2xl:w-[410px];
-  background-color: #f4f4f4;
-}
-
 form {
   overflow-x: hidden;
   overflow-y: auto;

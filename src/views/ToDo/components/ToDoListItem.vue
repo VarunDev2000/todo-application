@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="w-full flex flex-row justify-end items-center cursor-pointer px-3"
+      class="w-full flex flex-row justify-end items-center px-3 cursor-pointer"
     >
       <div class="flex flex-row justify-end items-center flex-1">
         <input
@@ -31,16 +31,16 @@
         />
         <div>
           <font-awesome-icon
-            class="text-lg text-gray-700 lg:hover:text-gray-900"
             v-if="!todo.completed"
+            class="text-lg text-gray-700 lg:hover:text-gray-900"
             icon="fa-solid fa-check"
             title="Mark as completed"
             @click="setTaskCompleted({ taskId: todo.id, completed: true })"
             data-test="todo-mark-completed-button"
           />
           <font-awesome-icon
-            class="text-xl text-gray-700 lg:hover:text-gray-900"
             v-else
+            class="text-xl text-gray-700 lg:hover:text-gray-900"
             icon="fa-solid fa-xmark"
             title="Mark as not completed"
             @click="setTaskCompleted({ taskId: todo.id, completed: false })"
@@ -52,7 +52,7 @@
     <transition name="slide-fade">
       <div
         v-if="showMoreDetails"
-        class="pl-[38px] pr-4 pb-3 text-[14px] lg:text-[12px]"
+        class="text-[14px] pb-3 pl-[38px] pr-4 lg:text-[12px]"
         data-test="todo-more-info"
       >
         <p
@@ -75,7 +75,7 @@
               <p class="ml-2">{{ todo.date }}</p>
             </div>
             <div
-              class="flex flex-row mt-2 items-center md:justify-center md:mt-0 md:ml-12"
+              class="flex flex-row items-center mt-2 md:justify-center md:mt-0 md:ml-12"
             >
               <p
                 class="w-3 h-3 text-black rounded-md"

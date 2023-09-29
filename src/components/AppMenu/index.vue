@@ -1,8 +1,8 @@
 <template>
   <transition :name="isMediumSizeScreen ? '' : 'fade'">
     <div
-      class="w-screen h-screen bg-[#f4f4f4] fixed flex-col justify-between px-5 py-4 rounded-xl overflow-x-hidden overflow-y-auto md:w-[340px] md:h-full md:static"
       v-if="isMediumSizeScreen || appMenu.isMenuOpen"
+      class="w-screen h-screen bg-[#f4f4f4] fixed flex-col justify-between px-5 py-4 rounded-xl overflow-x-hidden overflow-y-auto md:w-[340px] md:h-full md:static"
       data-test="app-menu"
     >
       <div>

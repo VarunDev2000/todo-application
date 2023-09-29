@@ -37,8 +37,8 @@
             />
           </div>
           <div
-            class="flex flex-row justify-between items-center"
             v-if="selectedToDoTaskList.length > 0"
+            class="flex flex-row justify-between items-center"
             data-test="todo-tasks-action-list"
           >
             <font-awesome-icon

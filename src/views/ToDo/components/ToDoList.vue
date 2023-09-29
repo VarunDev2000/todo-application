@@ -1,5 +1,8 @@
 <template>
-  <div id="todo-list" class="w-auto 2xl:w-full">
+  <div
+    id="todo-list"
+    class="w-auto h-[calc(100%-68px)] flex flex-col overflow-y-auto 2xl:w-full"
+  >
     <transition name="fade">
       <div v-if="filteredToDoList.length > 0">
         <transition-group name="list">
@@ -21,12 +24,12 @@
         src="@/assets/images/404.png"
         alt="Nothing to show here"
       />
-      <p class="text-gray-500 text-lg italic text-center mb-2">
+      <p class="text-lg text-gray-500 text-center italic mb-2">
         Nothing to show here....
       </p>
       <p
         v-if="todoList.length <= 0"
-        class="text-gray-500 text-[13px] italic mb-10"
+        class="text-[13px] text-gray-500 italic mb-10"
       >
         Tasks you add will be displayed here
       </p>
@@ -79,10 +82,4 @@ export default {
 }
 </script>
 
-<style lang="postcss" scoped>
-#todo-list {
-  @apply flex flex-col;
-  height: calc(100% - 68px);
-  overflow-y: auto;
-}
-</style>
+<style scoped></style>
