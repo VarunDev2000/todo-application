@@ -13,6 +13,10 @@ export const SET_SELECTED_MENU_TASK = (state, task) => {
   state.appMenu.selectedTask = task
 }
 
+export const SET_TODO_LIST = (state, todoList) => {
+  state.todo = todoList
+}
+
 export const SET_SELECTED_MENU_LIST = (state, list) => {
   const selectedListDataInStore = state.appMenu.selectedList
   if (selectedListDataInStore === list) {

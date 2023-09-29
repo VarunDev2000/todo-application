@@ -8,11 +8,33 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import { isNullOrEmpty } from '@/utils/helpers'
 import AppMenu from '@/components/AppMenu'
 
 export default {
   components: {
     'app-menu': AppMenu
+  },
+  mounted() {
+    window.addEventListener('storage', this.refreshApplicationOnStorageChange)
+  },
+  beforeUnmount() {
+    window.removeEventListener(
+      'storage',
+      this.refreshApplicationOnStorageChange
+    )
+  },
+  methods: {
+    ...mapActions(['setToDoList']),
+    refreshApplicationOnStorageChange() {
+      const storageData = localStorage.getItem('foo-key')
+      if (isNullOrEmpty(storageData)) {
+        window.location.reload()
+      } else {
+        this.setToDoList(storageData.todo)
+      }
+    }
   }
 }
 </script>
