@@ -1,3 +1,5 @@
+const APP_STORAGE_KEY = 'todo-app'
+
 const MENU_TASKS = [
   {
     id: 'menu-task1',
@@ -44,4 +46,4 @@ const MENU_LISTS = [
   }
 ]
 
-export { MENU_TASKS, MENU_LISTS }
+export { APP_STORAGE_KEY, MENU_TASKS, MENU_LISTS }

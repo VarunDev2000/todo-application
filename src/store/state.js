@@ -1,6 +1,12 @@
-import { MENU_TASKS } from '@/utils/constants'
+import { mergeDeepRight } from 'ramda'
+import { isNullOrEmpty } from '@/utils/helpers'
+import { APP_STORAGE_KEY, MENU_TASKS } from '@/utils/constants'
 
-export const state = {
+let persistedData = {
+  todo: []
+}
+
+let state = {
   appMenu: {
     isMenuOpen: false,
     selectedTask: MENU_TASKS[0].id,
@@ -43,3 +49,13 @@ export const state = {
     }
   ]
 }
+
+// Sync data with local storage.
+if (!isNullOrEmpty(localStorage.getItem(APP_STORAGE_KEY))) {
+  persistedData = JSON.parse(localStorage.getItem(APP_STORAGE_KEY))
+  if (!isNullOrEmpty(persistedData)) {
+    state = mergeDeepRight(state, persistedData)
+  }
+}
+
+export { state }

@@ -5,7 +5,7 @@
   >
     <div class="w-full md:pl-5 2xl:w-[730px] 2xl:px-5">
       <div
-        class="flex flex-row justify-between pb-7 mx-1 md:mx-0 2xl:items-center"
+        class="flex flex-row justify-between mx-1 md:mx-0 2xl:items-center 2xl:pb-7"
       >
         <p class="text-2xl font-extrabold md:text-4xl">
           {{ getTitle(appMenu.selectedTask) }}
