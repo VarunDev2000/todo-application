@@ -13,7 +13,7 @@ This is a To Do VueJS application with the following features:
 
 ## Live Application URL
 
-You can access the live application [here](https://6516ddf413a91b0eeed464f9--benevolent-selkie-5fddb2.netlify.app/)
+You can access the live application [here](https://todo-application-varun.netlify.app/)
 
 ## Application Demo
 
