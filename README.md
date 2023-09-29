@@ -61,6 +61,8 @@ npm run build
 
 - ### Desktop
 
+  ![Welcome popup](/assets//screenshots/welcome-popup.jpg)
+
   ![Main page with extra details and options of task](/assets//screenshots/main-more-details-open.jpg)
 
   ![Main page - Completed tasks](/assets//screenshots/main.jpg)
@@ -78,6 +80,10 @@ npm run build
   ![Main page in mobile device](/assets//screenshots/mobile-main.jpg)
 
   ![Menu in mobile device](/assets//screenshots/mobile-menu.jpg)
+
+  ![Create popup in mobile device](/assets//screenshots/mobile-create-popup.jpg)
+
+  ![Warning popup in mobile device](/assets//screenshots/mobile-warning-popup.jpg)
 
 ## Application design
 
