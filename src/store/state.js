@@ -3,7 +3,10 @@ import { isNullOrEmpty } from '@/utils/helpers'
 import { APP_STORAGE_KEY, MENU_TASKS } from '@/utils/constants'
 
 let persistedData = {
-  todo: []
+  todo: [],
+  modal: {
+    showWelcomeModal: false
+  }
 }
 
 let state = {
@@ -13,6 +16,7 @@ let state = {
     selectedList: ''
   },
   modal: {
+    showWelcomeModal: true,
     isCUDItemModalOpen: false,
     isDeleteConfirmationModalOpen: false,
     isMultipleDeleteConfirmationModalOpen: false

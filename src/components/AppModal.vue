@@ -14,14 +14,17 @@
         class="fixed flex justify-center items-center overflow-x-hidden overflow-y-auto inset-0 z-[999]"
       >
         <div
-          class="relative h-auto max-h-[90%] w-[85%] bg-white p-5 rounded-md overflow-x-hidden overflow-y-auto z-[999] md:w-[70%] xl:w-[55%] 2xl:w-[40%] boxShadow"
+          class="relative h-auto max-h-[95%] w-[85%] bg-white p-5 rounded-md overflow-x-hidden overflow-y-auto z-[999] md:w-[70%] xl:w-[55%] 2xl:w-[40%] boxShadow"
         >
           <!-- Modal title -->
-          <div class="flex flex-row justify-between items-center">
+          <div
+            v-if="!noHeader"
+            class="flex flex-row justify-between items-center"
+          >
             <p class="text-2xl font-semibold">{{ title }}</p>
             <font-awesome-icon
+              v-if="noFooter"
               class="ml-3 text-2xl text-gray-700 cursor-pointer lg:hover:text-gray-900"
-              :class="[noFooter ? 'block' : 'hidden']"
               icon="fa-solid fa-xmark"
               title="Close"
               @click="onCancel()"
@@ -33,10 +36,7 @@
             <slot />
           </div>
           <!-- Modal footer -->
-          <div
-            class="w-full flex justify-end items-center"
-            :class="{ hidden: noFooter }"
-          >
+          <div v-if="!noFooter" class="w-full flex justify-end items-center">
             <app-primary-button class="mr-3" :onclick="() => onSubmit()">{{
               submitButtonName
             }}</app-primary-button>
@@ -68,6 +68,10 @@ export default {
     submitButtonName: {
       type: String,
       default: 'Submit'
+    },
+    noHeader: {
+      type: Boolean,
+      default: false
     },
     noFooter: {
       type: Boolean,

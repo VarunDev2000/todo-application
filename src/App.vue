@@ -4,6 +4,7 @@
   >
     <app-menu />
     <router-view />
+    <app-welcome-popup />
   </div>
 </template>
 
@@ -11,10 +12,12 @@
 import { mapActions } from 'vuex'
 import { isNullOrEmpty } from '@/utils/helpers'
 import AppMenu from '@/components/AppMenu'
+import AppWelcomePopUp from '@/components/AppWelcomePopUp'
 
 export default {
   components: {
-    'app-menu': AppMenu
+    'app-menu': AppMenu,
+    'app-welcome-popup': AppWelcomePopUp
   },
   mounted() {
     window.addEventListener('storage', this.refreshApplicationOnStorageChange)
