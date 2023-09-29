@@ -1,4 +1,5 @@
 import { renderWrapper } from '@/utils/test/render'
+import { DATA_TEST_ID } from '@/utils/test/data-test-ids'
 import { state } from '@/store/state'
 import App from '@/App'
 import AppMenu from '@/components/AppMenu'
@@ -22,6 +23,8 @@ describe('App.vue', () => {
         }
       }
     )
-    expect(wrapper.find('[data-test="app-menu"]').exists()).toBe(true)
+    expect(
+      wrapper.find(`[data-test="${DATA_TEST_ID.APP_MENU}"]`).exists()
+    ).toBe(true)
   })
 })

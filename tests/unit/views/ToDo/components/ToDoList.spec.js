@@ -1,5 +1,6 @@
 import { renderWrapper } from '@/utils/test/render'
 import { MENU_TASKS } from '@/utils/constants'
+import { DATA_TEST_ID } from '@/utils/test/data-test-ids'
 import { state } from '@/store/state'
 import ToDoList from '@/views/ToDo/components/ToDoList'
 import ToDoListItem from '@/views/ToDo/components/ToDoListItem'
@@ -70,13 +71,17 @@ describe('ToDoList.vue', () => {
   it('should display all todo tasks when "All" filter is selected in app menu', async () => {
     const wrapper = renderToDoList()
     await wrapper.vm.$nextTick()
-    expect(wrapper.findAll('[data-test="todo-list-item"]')).toHaveLength(3)
+    expect(
+      wrapper.findAll(`[data-test="${DATA_TEST_ID.TODO_LIST_ITEM}"]`)
+    ).toHaveLength(3)
   })
 
   it('should display only pending todo tasks when "Pending" filter is selected in app menu', async () => {
     const wrapper = renderToDoList(MENU_TASKS[1].id)
     await wrapper.vm.$nextTick()
-    expect(wrapper.findAll('[data-test="todo-list-item"]')).toHaveLength(2)
+    expect(
+      wrapper.findAll(`[data-test="${DATA_TEST_ID.TODO_LIST_ITEM}"]`)
+    ).toHaveLength(2)
   })
 
   it('should display "Nothing to show here" when "Today" filter is selected in app menu', async () => {

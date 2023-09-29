@@ -1,4 +1,5 @@
 import { renderWrapper } from '@/utils/test/render'
+import { DATA_TEST_ID } from '@/utils/test/data-test-ids'
 import { state } from '@/store/state'
 import ToDoListItem from '@/views/ToDo/components/ToDoListItem'
 
@@ -36,26 +37,38 @@ describe('ToDoListItem.vue', () => {
 
   it('should display all todo details', async () => {
     expect(wrapper.text()).toContain(propsData.todo.task)
-    await wrapper.findAll('[data-test="todo-task"').trigger('click')
+    await wrapper
+      .findAll(`[data-test="${DATA_TEST_ID.TODO_TASK}"`)
+      .trigger('click')
     expect(wrapper.text()).toContain(propsData.todo.description)
     expect(wrapper.text()).toContain(propsData.todo.date)
   })
 
   it('should show todo more info only on task name click', async () => {
-    expect(wrapper.findAll('[data-test="todo-more-info"]')).toHaveLength(0)
-    await wrapper.findAll('[data-test="todo-task"').trigger('click')
-    expect(wrapper.findAll('[data-test="todo-more-info"]')).toHaveLength(1)
+    expect(
+      wrapper.findAll(`[data-test="${DATA_TEST_ID.TODO_MORE_INFO}"]`)
+    ).toHaveLength(0)
+    await wrapper
+      .findAll(`[data-test="${DATA_TEST_ID.TODO_TASK}"`)
+      .trigger('click')
+    expect(
+      wrapper.findAll(`[data-test="${DATA_TEST_ID.TODO_MORE_INFO}"]`)
+    ).toHaveLength(1)
   })
 
   it('should dispatch "toggleModal" when edit button is clicked', async () => {
-    await wrapper.findAll('[data-test="todo-task"').trigger('click')
-    await wrapper.findAll('[data-test="todo-item-edit-button"').trigger('click')
+    await wrapper
+      .findAll(`[data-test="${DATA_TEST_ID.TODO_TASK}"`)
+      .trigger('click')
+    await wrapper
+      .findAll(`[data-test="${DATA_TEST_ID.TODO_ITEM_EDIT_BUTTON}"`)
+      .trigger('click')
     expect(actions.toggleModal).toHaveBeenCalled()
   })
 
   it('should dispatch "setTaskCompleted" when completed or not completed button is clicked', async () => {
     await wrapper
-      .findAll('[data-test="todo-mark-completed-button"]')
+      .findAll(`[data-test="${DATA_TEST_ID.TODO_MARK_COMPLETED_BUTTON}"]`)
       .trigger('click')
     expect(actions.setTaskCompleted).toHaveBeenCalled()
   })

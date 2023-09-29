@@ -1,4 +1,5 @@
 import { renderWrapper } from '@/utils/test/render'
+import { DATA_TEST_ID } from '@/utils/test/data-test-ids'
 import { state } from '@/store/state'
 import ToDoCUDItemForm from '@/views/ToDo/components/ToDoCUDItemForm'
 import ToDoDeleteConfirmation from '@/views/ToDo/components/ToDoDeleteConfirmation'
@@ -38,23 +39,31 @@ describe('ToDoCUDItemForm.vue', () => {
     })
 
     it('should render create task button', () => {
-      expect(wrapper.find('[data-test="create-task-button"]').exists()).toBe(
-        true
-      )
+      expect(
+        wrapper
+          .find(
+            `[data-test="${DATA_TEST_ID.TODO_CUD_ITEM_FORM_CREATE_TASK_BUTTON}"]`
+          )
+          .exists()
+      ).toBe(true)
     })
 
     it('should have empty values for task and description input', () => {
-      const task = wrapper.find('[data-test="input-task-name"]').element.value
-      const description = wrapper.find('[data-test="input-task-description"]')
+      const task = wrapper.find(`[data-test="${DATA_TEST_ID.INPUT_TASK_NAME}"]`)
         .element.value
+      const description = wrapper.find(
+        `[data-test="${DATA_TEST_ID.INPUT_TASK_DESCRIPTION}"]`
+      ).element.value
       expect(task).toEqual('')
       expect(description).toEqual('')
     })
 
     it('should show error on invalid data', async () => {
-      const taskInput = wrapper.find('[data-test="input-task-name"]')
+      const taskInput = wrapper.find(
+        `[data-test="${DATA_TEST_ID.INPUT_TASK_NAME}"]`
+      )
       const descriptionInput = wrapper.find(
-        '[data-test="input-task-description"]'
+        `[data-test="${DATA_TEST_ID.INPUT_TASK_DESCRIPTION}"]`
       )
 
       await taskInput.setValue('Test task *')
@@ -69,8 +78,12 @@ describe('ToDoCUDItemForm.vue', () => {
     })
 
     it('should enable and disable create task button based on validity of the form', async () => {
-      const taskInput = wrapper.find('[data-test="input-task-name"]')
-      const createButton = wrapper.find('[data-test="create-task-button"]')
+      const taskInput = wrapper.find(
+        `[data-test="${DATA_TEST_ID.INPUT_TASK_NAME}"]`
+      )
+      const createButton = wrapper.find(
+        `[data-test="${DATA_TEST_ID.TODO_CUD_ITEM_FORM_CREATE_TASK_BUTTON}"]`
+      )
 
       await taskInput.setValue('Valid task name')
 
@@ -81,8 +94,12 @@ describe('ToDoCUDItemForm.vue', () => {
     })
 
     it('should dispatch "addToDoTask" when create task button is clicked', async () => {
-      const taskInput = wrapper.find('[data-test="input-task-name"]')
-      const createButton = wrapper.find('[data-test="create-task-button"]')
+      const taskInput = wrapper.find(
+        `[data-test="${DATA_TEST_ID.INPUT_TASK_NAME}"]`
+      )
+      const createButton = wrapper.find(
+        `[data-test="${DATA_TEST_ID.TODO_CUD_ITEM_FORM_CREATE_TASK_BUTTON}"]`
+      )
 
       await taskInput.setValue('Valid task name')
       expect(createButton.attributes('disabled')).toBeUndefined
@@ -128,25 +145,39 @@ describe('ToDoCUDItemForm.vue', () => {
     })
 
     it('should render update and delete task button', () => {
-      expect(wrapper.find('[data-test="update-task-button"]').exists()).toBe(
-        true
-      )
-      expect(wrapper.find('[data-test="delete-task-button"]').exists()).toBe(
-        true
-      )
+      expect(
+        wrapper
+          .find(
+            `[data-test="${DATA_TEST_ID.TODO_CUD_ITEM_FORM_UPDATE_TASK_BUTTON}"]`
+          )
+          .exists()
+      ).toBe(true)
+      expect(
+        wrapper
+          .find(
+            `[data-test="${DATA_TEST_ID.TODO_CUD_ITEM_FORM_DELETE_TASK_BUTTON}"]`
+          )
+          .exists()
+      ).toBe(true)
     })
 
     it('should have pre-filled values for task and description input', () => {
-      const task = wrapper.find('[data-test="input-task-name"]').element.value
-      const description = wrapper.find('[data-test="input-task-description"]')
+      const task = wrapper.find(`[data-test="${DATA_TEST_ID.INPUT_TASK_NAME}"]`)
         .element.value
+      const description = wrapper.find(
+        `[data-test="${DATA_TEST_ID.INPUT_TASK_DESCRIPTION}"]`
+      ).element.value
       expect(task).toEqual(selectedToDoTask.task)
       expect(description).toEqual(selectedToDoTask.description)
     })
 
     it('should enable and disable update task button based on validity of the form', async () => {
-      const taskInput = wrapper.find('[data-test="input-task-name"]')
-      const updateButton = wrapper.find('[data-test="update-task-button"]')
+      const taskInput = wrapper.find(
+        `[data-test="${DATA_TEST_ID.INPUT_TASK_NAME}"]`
+      )
+      const updateButton = wrapper.find(
+        `[data-test="${DATA_TEST_ID.TODO_CUD_ITEM_FORM_UPDATE_TASK_BUTTON}"]`
+      )
 
       await taskInput.setValue('Valid task name')
 
@@ -157,8 +188,12 @@ describe('ToDoCUDItemForm.vue', () => {
     })
 
     it('should dispatch "updateToDoTask" when update task button is clicked', async () => {
-      const taskInput = wrapper.find('[data-test="input-task-name"]')
-      const updateButton = wrapper.find('[data-test="update-task-button"]')
+      const taskInput = wrapper.find(
+        `[data-test="${DATA_TEST_ID.INPUT_TASK_NAME}"]`
+      )
+      const updateButton = wrapper.find(
+        `[data-test="${DATA_TEST_ID.TODO_CUD_ITEM_FORM_UPDATE_TASK_BUTTON}"]`
+      )
 
       await taskInput.setValue('Valid task name')
       expect(updateButton.attributes('disabled')).toBeUndefined
@@ -167,7 +202,9 @@ describe('ToDoCUDItemForm.vue', () => {
     })
 
     it('should display warning popup on delete button click', async () => {
-      const deleteButton = wrapper.find('[data-test="delete-task-button"]')
+      const deleteButton = wrapper.find(
+        `[data-test="${DATA_TEST_ID.TODO_CUD_ITEM_FORM_DELETE_TASK_BUTTON}"]`
+      )
       await deleteButton.trigger('click')
       expect(actions.toggleModal).toHaveBeenCalled()
     })

@@ -1,5 +1,6 @@
 import { renderWrapper } from '@/utils/test/render'
 import { MENU_TASKS } from '@/utils/constants'
+import { DATA_TEST_ID } from '@/utils/test/data-test-ids'
 import { state } from '@/store/state'
 import ToDo from '@/views/ToDo/ToDo'
 
@@ -39,9 +40,11 @@ describe('ToDo.vue', () => {
   it('should show create task button while editing a todo task', async () => {
     let wrapper = renderToDo({ state })
 
-    expect(wrapper.find('[data-test="todo-create-task-button"]').exists()).toBe(
-      false
-    )
+    expect(
+      wrapper
+        .find(`[data-test="${DATA_TEST_ID.TODO_CREATE_TASK_BUTTON}"]`)
+        .exists()
+    ).toBe(false)
 
     // Task selected for editing
     let store = {
@@ -60,9 +63,11 @@ describe('ToDo.vue', () => {
     }
     wrapper = renderToDo(store)
 
-    expect(wrapper.find('[data-test="todo-create-task-button"]').exists()).toBe(
-      true
-    )
+    expect(
+      wrapper
+        .find(`[data-test="${DATA_TEST_ID.TODO_CREATE_TASK_BUTTON}"]`)
+        .exists()
+    ).toBe(true)
   })
 
   it('should show action list(Mark complete, Mark as not complete, Delete, Cancel) when todo task(s) are checked', async () => {
@@ -74,8 +79,10 @@ describe('ToDo.vue', () => {
     }
     const wrapper = renderToDo(store)
 
-    expect(wrapper.find('[data-test="todo-tasks-action-list"]').exists()).toBe(
-      true
-    )
+    expect(
+      wrapper
+        .find(`[data-test="${DATA_TEST_ID.TODO_TASKS_ACTION_LIST}"]`)
+        .exists()
+    ).toBe(true)
   })
 })

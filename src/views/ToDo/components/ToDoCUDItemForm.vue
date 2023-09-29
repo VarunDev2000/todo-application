@@ -18,7 +18,7 @@
             maxlength="100"
             @input="validateInput('task')"
             :class="{ errorOutline: error['task'] }"
-            data-test="input-task-name"
+            :data-test="DATA_TEST_ID.INPUT_TASK_NAME"
           />
         </error-wrapper>
 
@@ -29,7 +29,7 @@
             maxlength="500"
             @input="validateInput('description')"
             :class="{ errorOutline: error['description'] }"
-            data-test="input-task-description"
+            :data-test="DATA_TEST_ID.INPUT_TASK_DESCRIPTION"
           />
         </error-wrapper>
         <div class="flex flex-row items-center mb-5">
@@ -66,7 +66,7 @@
         type="submit"
         :disabled="createOrSaveActionButtonDisabled"
         class="w-full mt-10 mr-2"
-        data-test="create-task-button"
+        :data-test="DATA_TEST_ID.TODO_CUD_ITEM_FORM_CREATE_TASK_BUTTON"
         >Create task</app-primary-button
       >
 
@@ -76,7 +76,7 @@
             type="submit"
             :disabled="createOrSaveActionButtonDisabled"
             class="w-full md:mr-2"
-            data-test="update-task-button"
+            :data-test="DATA_TEST_ID.TODO_CUD_ITEM_FORM_UPDATE_TASK_BUTTON"
           >
             Save changes
           </app-primary-button>
@@ -89,7 +89,7 @@
                   value: true
                 })
             "
-            data-test="delete-task-button"
+            :data-test="DATA_TEST_ID.TODO_CUD_ITEM_FORM_DELETE_TASK_BUTTON"
             >Delete task</app-secondary-button
           >
         </div>
@@ -121,13 +121,14 @@
 import { mapState, mapActions } from 'vuex'
 import DatePicker from 'vue2-datepicker'
 import { equals } from 'ramda'
+import { formatDate } from '@/utils/date'
+import { isNullOrEmpty } from '@/utils/helpers'
+import { MENU_LISTS } from '@/utils/constants'
+import { DATA_TEST_ID } from '@/utils/test/data-test-ids'
 import AppPrimaryButton from '@/components/AppPrimaryButton'
 import AppSecondaryButton from '@/components/AppSecondaryButton'
 import ToDoDeleteConfirmation from './ToDoDeleteConfirmation'
 import ErrorWrapper from '@/components/ErrorWrapper'
-import { formatDate } from '@/utils/date'
-import { isNullOrEmpty } from '@/utils/helpers'
-import { MENU_LISTS } from '@/utils/constants'
 
 export default {
   name: 'ToDoCUDItemForm',
@@ -153,7 +154,8 @@ export default {
         task: '',
         description: ''
       },
-      MENU_LISTS
+      MENU_LISTS,
+      DATA_TEST_ID
     }
   },
   mounted() {

@@ -17,7 +17,7 @@
             'break-all': hasNoSpaces(todo.task)
           }"
           @click="toggleMoreDetails"
-          data-test="todo-task"
+          :data-test="DATA_TEST_ID.TODO_TASK"
         >
           {{ todo.task }}
         </p>
@@ -36,7 +36,7 @@
             icon="fa-solid fa-check"
             title="Mark as completed"
             @click="setTaskCompleted({ taskId: todo.id, completed: true })"
-            data-test="todo-mark-completed-button"
+            :data-test="DATA_TEST_ID.TODO_MARK_COMPLETED_BUTTON"
           />
           <font-awesome-icon
             v-else
@@ -53,7 +53,7 @@
       <div
         v-if="showMoreDetails"
         class="text-[14px] pb-3 pl-[38px] pr-4 lg:text-[12px]"
-        data-test="todo-more-info"
+        :data-test="DATA_TEST_ID.TODO_MORE_INFO"
       >
         <p
           class="italic"
@@ -95,7 +95,7 @@
             <button
               class="underline lg:hover:text-black"
               @click="editToDo(todo)"
-              data-test="todo-item-edit-button"
+              :data-test="DATA_TEST_ID.TODO_ITEM_EDIT_BUTTON"
             >
               Edit
             </button>
@@ -112,6 +112,7 @@ import { mapState, mapActions } from 'vuex'
 import { MENU_LISTS } from '@/utils/constants'
 import { formatDate } from '@/utils/date'
 import { hasNoSpaces } from '@/utils/helpers'
+import { DATA_TEST_ID } from '@/utils/test/data-test-ids'
 
 export default {
   name: 'ToDoListItem',
@@ -123,7 +124,8 @@ export default {
         name: '',
         color: '#000000'
       },
-      MENU_LISTS
+      MENU_LISTS,
+      DATA_TEST_ID
     }
   },
   props: {

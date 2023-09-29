@@ -3,7 +3,7 @@
     <div
       v-if="isMediumSizeScreen || appMenu.isMenuOpen"
       class="w-screen h-screen bg-[#f4f4f4] fixed flex-col justify-between px-5 py-4 rounded-xl overflow-x-hidden overflow-y-auto md:w-[340px] md:h-full md:static"
-      data-test="app-menu"
+      :data-test="DATA_TEST_ID.APP_MENU"
     >
       <div>
         <div class="flex flex-row justify-between items-center">
@@ -61,6 +61,7 @@
 import { mapState, mapActions } from 'vuex'
 import { MENU_TASKS, MENU_LISTS } from '@/utils/constants'
 import { getFilteredData } from '@/utils/helpers'
+import { DATA_TEST_ID } from '@/utils/test/data-test-ids'
 import AppMenuTaskItem from './AppMenuTaskItem'
 import AppMenuListItem from './AppMenuListItem'
 
@@ -74,7 +75,8 @@ export default {
     return {
       isMediumSizeScreen: false,
       MENU_TASKS,
-      MENU_LISTS
+      MENU_LISTS,
+      DATA_TEST_ID
     }
   },
   mounted() {

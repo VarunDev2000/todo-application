@@ -10,7 +10,7 @@
             v-for="todo in filteredToDoList"
             :key="todo.id"
             :todo="todo"
-            data-test="todo-list-item"
+            :data-test="DATA_TEST_ID.TODO_LIST_ITEM"
           />
         </transition-group>
       </div>
@@ -40,13 +40,15 @@
 <script>
 import { mapState } from 'vuex'
 import { getFilteredData } from '@/utils/helpers'
+import { DATA_TEST_ID } from '@/utils/test/data-test-ids'
 import ToDoListItem from './ToDoListItem.vue'
 
 export default {
   name: 'ToDoList',
   data() {
     return {
-      filteredToDoList: []
+      filteredToDoList: [],
+      DATA_TEST_ID
     }
   },
   components: {
