@@ -17,9 +17,7 @@ You can access the live application [here](https://todo-application-varun.netlif
 
 ## Application Demo
 
-You can watch the application demo here:
-
-### https://aditya-sridhar.github.io/simple-reactjs-app
+You can watch the application demo [here](https://www.youtube.com/watch?v=EvnDtcDnTa4)
 
 ## Installation and Setup Instructions
 
