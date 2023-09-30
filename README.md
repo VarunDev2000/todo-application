@@ -111,7 +111,9 @@ npm run build
 
   4. **AppSecondaryButton** Component : This component renders the secondary button of the app.
 
-  5. **ErrorWrapper** Component : This is a component wrapper to show error message during form validation.
+  5. **AppWelcomePopUp** Component : This Component is the welcome popup that will be shown to the user when he/she is accessing the application for first time.
+
+  6. **ErrorWrapper** Component : This is a component wrapper to show error message during form validation.
 
 - ### URL
 
